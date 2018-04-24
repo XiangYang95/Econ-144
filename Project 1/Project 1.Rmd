@@ -52,11 +52,11 @@ b)
 ```{r}
 #Plotting both the time series of the CPI and it's difference
 plot(CPI_ts)
-CPI_ts_diff = diff(CPI_ts)
+CPI_ts_diff = diff(log(CPI_ts))
 plot(CPI_ts_diff)
 ```
 ##
-The original plot shows that the time series is not covariance stationary since the variance at each specific time point varies. However if we take a difference the 
+The original plot shows that the time series is not covariance stationary since the variance at each specific time point varies. However if we take a difference of the log of the time series, we could clearly see that this difference is covariance stationary.
 
 c)
 ```{r}
@@ -72,20 +72,15 @@ d)
 #we regress CPI_ts with a linear model and nonlinear models such as quadratic, logatithmatic and exponential and then plot the graphs 
 t = seq(1950, 2018, length = length(CPI_ts))
 y1 = lm(CPI_ts~t)
-summary(y1)
 
 y2 = lm(CPI_ts~t+I(t^2))
-summary(y2)
 
 y3=lm(log(CPI_ts) ~ t)
-summary(y3)
 
 ds=data.frame(x=t, y=CPI_ts)
 y4=nls(y ~ exp(a + b * t),data=ds, start = list(a = 0, b = 0))
-summary(y4)
 
 y5=lm(CPI_ts ~ log(t))
-summary(y5)
 
 matplot(t, cbind(y1$fitted.values, CPI), xlab = "Time", ylab = "Values", lwd = 0.1)
 title(main = "Linear model")
@@ -96,10 +91,62 @@ title(main = "Quadratic model")
 matplot(t, cbind(y3$fitted.values, CPI), xlab = "Time", ylab = "Values")
 title(main = "Log-linear model")
 
+matplot(t, cbind(predict(y4, list(x = ds$x)), CPI), xlab = "Time", ylab = "Values")
+title(main = "Exponential model")
 
-matplot(t, cbind(y4$fitted.values, CPI), xlab = "Time", ylab = "Values")
-title(main = "Exponential")
+matplot(t, cbind(y5$fitted.values, CPI), xlab = "Time", ylab = "Values")
+title(main = "Linear-log model")
 ```
+
+All of the lines, except the log-linear, seems to follow the trend of the data well. This means that these models fit the data well. We have to see the summary for the log-linear to determine whether the model fits well to the data.
+
+e)
+```{r}
+plot(resid(y1), fitted(y1), xlab = "Residuals",
+    ylab = "Fitted Values", main = "Linear model",
+    pch = 19, col = "navyblue")
+plot(resid(y2), fitted(y2), xlab = "Residuals",
+    ylab = "Fitted Values", main = "Quadratic model",
+    pch = 19, col = "navyblue")
+plot(resid(y3), fitted(y3), xlab = "Residuals",
+    ylab = "Fitted Values", main = "Log-linear model",
+    pch = 19, col = "navyblue")
+plot(resid(y4), fitted(y3), xlab = "Residuals",
+    ylab = "Fitted Values", main = "Exponential model",
+    pch = 19, col = "navyblue")
+plot(resid(y5), fitted(y3), xlab = "Residuals",
+    ylab = "Fitted Values", main = "Linear-log model",
+    pch = 19, col = "navyblue")
+```
+
+For both the linear and the linear-log models, there seems to be a little more residuals on the right, which indicate that the models underpredict the data, while for both the quadratic and exponential models, there seems to be little more residuals on the left, indicating that the models overpredict the data. The residuals are most balanced on both sides are from the log-linear model.
+
+f)
+```{r}
+truehist(resid(y1), main = "Residuals", col = "slategrey",
+    xlab = "Residuals", ylab = "Standardized Unit")
+truehist(resid(y2), main = "Residuals", col = "slategrey",
+    xlab = "Residuals", ylab = "Standardized Unit")
+truehist(resid(y3), main = "Residuals", col = "slategrey",
+    xlab = "Residuals", ylab = "Standardized Unit")
+truehist(resid(y4), main = "Residuals", col = "slategrey",
+    xlab = "Residuals", ylab = "Standardized Unit")
+truehist(resid(y5), main = "Residuals", col = "slategrey",
+    xlab = "Residuals", ylab = "Standardized Unit")
+```
+
+These histograms fully mimics the plot from e). The analysis for each model should then be the same.
+
+f)
+```{r}
+summary(y1)
+summary(y2)
+summary(y3)
+summary(y4)
+summary(y5)
+```
+
+All the models fit the data pretty well, with at least a 0.85 for the R^2. The time for all models are also statistically significant, indicating that time plays a significant role in the data. Among all the models, the quadratic and the linear-log models have the best R^2, which might indicate that they are the best models to fit the data.
 
 ##Problem 2
 a)
@@ -108,6 +155,7 @@ a)
 fit_season=tslm(CPI_ts ~ season)
 summary(fit_season)
 ```
+
 b)
 ```{r}
 #Plotting the season factors
@@ -121,7 +169,7 @@ The plot of seasonal factors show that there is little significance of seasonal 
 ```{r}
 #First construct the time series regression model for both the trend and season
 #Then plot the residuals vs fitted values graphs
-fit_full = tslm(log(CPI_ts) ~ t + season, start = 1950, freq = 12)
+fit_full = tslm(log(CPI_ts) ~ trend + season, start = 1950, freq = 12)
 plot(fit_full$residuals,fit_full$fitted.values, main = "Residuals vs Fitted values", xlab = "Residuals", ylab = "Fitted values")
 ```
 
