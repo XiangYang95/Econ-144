@@ -1,0 +1,152 @@
+---
+title: "Project 1"
+author: "Xiang Yang Ng, Muiz Rahemtullah"
+date: "April 18, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+##Introduction
+Our data is Consumer Price Index for all urban consumers based on the purchasing power of the US dollar from January 1950 to January 2018. We obtained the data from the U.S. Bureau of Labor Statistics. THe data is last updated on April 17 2018.
+```{r}
+
+setwd("/Users/Lenovo/Desktop/Econ 144/Project 1")
+rm(list=ls(all=TRUE))
+library(lattice)
+library(foreign)
+library(MASS)
+library(car)
+require(stats)
+require(stats4)
+library(KernSmooth)
+library(fastICA)
+library(cluster)
+library(leaps)
+library(mgcv)
+library(rpart)
+library(pan)
+library(mgcv)
+library(DAAG)
+library(tis)
+require(datasets)
+require(graphics)
+library("forecast")
+
+#require(astsa)
+#library(xtable)
+#library(stats)
+```
+
+a)
+```{r}
+#Obtain the data, clean it and construct the time series for the CPI
+data = read.csv("Consumer Price Index for All Urban Consumers Purchasing Power of the Consumer Dollar 1950_1-2018_1.csv")
+colnames(data)[2] = "CPI"
+attach(data)
+CPI_ts = ts(CPI, start = 1950, freq = 12)
+
+```
+b)
+```{r}
+#Plotting both the time series of the CPI and it's difference
+plot(CPI_ts)
+CPI_ts_diff = diff(CPI_ts)
+plot(CPI_ts_diff)
+```
+##
+The original plot shows that the time series is not covariance stationary since the variance at each specific time point varies. However if we take a difference the 
+
+c)
+```{r}
+#Plotting the ACF and the PACF of the time series
+acf(CPI_ts)
+pacf(CPI)
+```
+
+The ACF shows that there is significant correlation for lag 1, which decreases as the lag increases. This means that subsequence lags have correlation which only depends on the first lag. This is showed by the pacf which is high for the first lag and zero otherwise.
+
+d)
+```{r}
+#we regress CPI_ts with a linear model and nonlinear models such as quadratic, logatithmatic and exponential and then plot the graphs 
+t = seq(1950, 2018, length = length(CPI_ts))
+y1 = lm(CPI_ts~t)
+summary(y1)
+
+y2 = lm(CPI_ts~t+I(t^2))
+summary(y2)
+
+y3=lm(log(CPI_ts) ~ t)
+summary(y3)
+
+ds=data.frame(x=t, y=CPI_ts)
+y4=nls(y ~ exp(a + b * t),data=ds, start = list(a = 0, b = 0))
+summary(y4)
+
+y5=lm(CPI_ts ~ log(t))
+summary(y5)
+
+matplot(t, cbind(y1$fitted.values, CPI), xlab = "Time", ylab = "Values", lwd = 0.1)
+title(main = "Linear model")
+
+matplot(t, cbind(y2$fitted.values, CPI), xlab = "Time", ylab = "Values", lwd = 0.1)
+title(main = "Quadratic model")
+
+matplot(t, cbind(y3$fitted.values, CPI), xlab = "Time", ylab = "Values")
+title(main = "Log-linear model")
+
+
+matplot(t, cbind(y4$fitted.values, CPI), xlab = "Time", ylab = "Values")
+title(main = "Exponential")
+```
+
+##Problem 2
+a)
+```{r}
+#Run a time series regression on the season and show the results
+fit_season=tslm(CPI_ts ~ season)
+summary(fit_season)
+```
+b)
+```{r}
+#Plotting the season factors
+plot(fit_season$coef,type='l',ylab='Seasonal Factors', xlab="Season",lwd=2, main="Plot of Seasonal Factors")
+
+```
+
+The plot of seasonal factors show that there is little significance of seasonal factors on the data. That further strengthens the idea that the trend dominates the seasonal elements.
+
+(c)
+```{r}
+#First construct the time series regression model for both the trend and season
+#Then plot the residuals vs fitted values graphs
+fit_full = tslm(log(CPI_ts) ~ t + season, start = 1950, freq = 12)
+plot(fit_full$residuals,fit_full$fitted.values, main = "Residuals vs Fitted values", xlab = "Residuals", ylab = "Fitted values")
+```
+
+##
+There seems to be a nonlinear pattern in the plot, which means that the model is heterskedastic
+
+(d)
+```{r}
+#Producing the summary of the regression
+summary(fit_full)
+```
+
+Only the trend's coefficient is statistically significant, while the seasons' coefficients are all statistically insignificant based on the t-values and it's corresponding probabilities. This suggests that there is little seasonality in the data as trend weighs more on the data than seasonality. Since the R^2 is very high, we can see that the model fits the data well. THe large F-statistics, paired with a significantly low p-value, shows that all the regression coefficients are not equal zero. But this is because of the trend coefficient having large t-value and a corresponding low p-value that shows it is a statistically significant variable not equal zero.
+
+e)
+```{r}
+#Plotting the forecast of the data using the full model 
+plot(forecast(fit_full,h=60),main="Forecast Trend + Seasonality")
+lines(fit_full$fitted.values, col="red")
+
+#Plotting the ets of the CPI_ts and finding the accuracy
+fit_ets = ets(CPI_ts)
+plot(fit_ets)
+accuracy(fit_ets)
+plot(forecast(fit_ets,level=c(50,80,95)))
+```
+
+As we can see, just plotting the forecast of the full model yields very bad result since there is a non-linear trend downwards. However, by using the ETS function, we manage to improve the forecast and produce the graphs that shows a better picture of the forecast.

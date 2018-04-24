@@ -1,0 +1,1062 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 10">
+<link rel=File-List href="Air_Traffic_Excel_passenger_files/filelist.xml">
+<link rel=Edit-Time-Data href="Air_Traffic_Excel_passenger_files/editdata.mso">
+<link rel=OLE-Object-Data href="Air_Traffic_Excel_passenger_files/oledata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+x\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:LastAuthor> </o:LastAuthor>
+  <o:LastSaved>2008-05-05T21:13:31Z</o:LastSaved>
+  <o:Version>10.2625</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:DownloadComponents/>
+  <o:LocationOfComponents HRef="file:///D:\MSOXP\"/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+<style>
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+@page
+	{margin:1.0in .75in 1.0in .75in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;}
+tr
+	{mso-height-source:auto;}
+col
+	{mso-width-source:auto;}
+br
+	{mso-data-placement:same-cell;}
+.style0
+	{mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	white-space:nowrap;
+	mso-rotate:0;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	color:windowtext;
+	font-size:10.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Arial;
+	mso-generic-font-family:auto;
+	mso-font-charset:0;
+	border:none;
+	mso-protection:locked visible;
+	mso-style-name:Normal;
+	mso-style-id:0;}
+td
+	{mso-style-parent:style0;
+	padding:0px;
+	mso-ignore:padding;
+	color:windowtext;
+	font-size:10.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Arial;
+	mso-generic-font-family:auto;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	mso-protection:locked visible;
+	white-space:nowrap;
+	mso-rotate:0;}
+.xl24
+	{mso-style-parent:style0;
+	font-size:13.5pt;
+	font-weight:700;
+	font-family:"Arial Unicode MS", sans-serif;
+	mso-font-charset:0;}
+.xl25
+	{mso-style-parent:style0;
+	font-family:"Arial Unicode MS", sans-serif;
+	mso-font-charset:0;}
+.xl26
+	{mso-style-parent:style0;
+	font-weight:700;
+	font-family:"Arial Unicode MS", sans-serif;
+	mso-font-charset:0;
+	text-align:center;
+	vertical-align:middle;}
+.xl27
+	{mso-style-parent:style0;
+	font-weight:700;
+	font-family:"Arial Unicode MS", sans-serif;
+	mso-font-charset:0;
+	text-align:center;
+	vertical-align:middle;
+	white-space:normal;}
+.xl28
+	{mso-style-parent:style0;
+	font-family:"Arial Unicode MS", sans-serif;
+	mso-font-charset:0;
+	mso-number-format:"mmm\\-yy";
+	white-space:normal;}
+.xl29
+	{mso-style-parent:style0;
+	font-family:"Arial Unicode MS", sans-serif;
+	mso-font-charset:0;
+	mso-number-format:"\#\,\#\#0";
+	white-space:normal;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <x:ExcelWorkbook>
+  <x:ExcelWorksheets>
+   <x:ExcelWorksheet>
+    <x:Name>Air_Traffic_Excel_passenger</x:Name>
+    <x:WorksheetOptions>
+     <x:Print>
+      <x:ValidPrinterInfo/>
+      <x:HorizontalResolution>300</x:HorizontalResolution>
+      <x:VerticalResolution>300</x:VerticalResolution>
+     </x:Print>
+     <x:Selected/>
+     <x:DoNotDisplayGridlines/>
+     <x:Panes>
+      <x:Pane>
+       <x:Number>3</x:Number>
+       <x:ActiveRow>17</x:ActiveRow>
+       <x:ActiveCol>17</x:ActiveCol>
+      </x:Pane>
+     </x:Panes>
+     <x:ProtectContents>False</x:ProtectContents>
+     <x:ProtectObjects>False</x:ProtectObjects>
+     <x:ProtectScenarios>False</x:ProtectScenarios>
+    </x:WorksheetOptions>
+    <x:Sorting>
+     <x:Sort>(Column A)</x:Sort>
+    </x:Sorting>
+   </x:ExcelWorksheet>
+  </x:ExcelWorksheets>
+  <x:WindowHeight>8700</x:WindowHeight>
+  <x:WindowWidth>18795</x:WindowWidth>
+  <x:WindowTopX>240</x:WindowTopX>
+  <x:WindowTopY>285</x:WindowTopY>
+  <x:ProtectStructure>False</x:ProtectStructure>
+  <x:ProtectWindows>False</x:ProtectWindows>
+ </x:ExcelWorkbook>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1026"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body link=blue vlink=purple>
+
+<table x:str border=0 cellpadding=0 cellspacing=0 width=968 style='border-collapse:
+ collapse;table-layout:fixed;width:727pt'>
+ <col width=50 style='mso-width-source:userset;mso-width-alt:1828;width:38pt'>
+ <col width=150 style='mso-width-source:userset;mso-width-alt:5485;width:113pt'>
+ <col width=64 span=12 style='width:48pt'>
+ <tr height=26 style='height:19.5pt'>
+  <td height=26 class=xl24 colspan=9 width=648 style='height:19.5pt;mso-ignore:
+  colspan;width:487pt'>Domestic&nbsp;Revenue Passenger
+  Enplanements&nbsp;(Jan&nbsp;2000&nbsp;-&nbsp;Jan&nbsp;2008)</td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 colspan=14 style='height:12.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl25 style='height:15.0pt'>&nbsp;(000)</td>
+  <td colspan=13 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl26 style='height:15.0pt'></td>
+  <td class=xl27 width=150 style='width:113pt' id=header1>Scheduled</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36526" id=subh20000197>Jan-00</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="41545"
+  header="subh20000197 header97">41,545</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36557" id=subh20000296>Feb-00</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="43720"
+  header="subh20000296 header96">43,720</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36586" id=subh20000395>Mar-00</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="52983"
+  header="subh20000395 header95">52,983</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36617" id=subh20000494>Apr-00</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="50349"
+  header="subh20000494 header94">50,349</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36647" id=subh20000593>May-00</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="52314"
+  header="subh20000593 header93">52,314</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36678" id=subh20000692>Jun-00</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="54679"
+  header="subh20000692 header92">54,679</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36708" id=subh20000791>Jul-00</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="55574"
+  header="subh20000791 header91">55,574</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36739" id=subh20000890>Aug-00</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="54479"
+  header="subh20000890 header90">54,479</td>
+  <td></td>
+  <td colspan=11 rowspan=15 height=300 width=704 style='mso-ignore:colspan-rowspan;
+  height:225.0pt;width:528pt'><!--[if gte vml 1]><v:shapetype id="_x0000_t201"
+   coordsize="21600,21600" o:spt="201" path="m,l,21600r21600,l21600,xe">
+   <v:stroke joinstyle="miter"/>
+   <v:path shadowok="f" o:extrusionok="f" strokeok="f" fillok="f"
+    o:connecttype="rect"/>
+   <o:lock v:ext="edit" shapetype="t"/>
+  </v:shapetype><v:shape id="_x0000_s1025" type="#_x0000_t201" style='position:absolute;
+   margin-left:33.75pt;margin-top:2.25pt;width:463.5pt;height:213.75pt;
+   z-index:1' fillcolor="window [78]" strokecolor="windowText [77]"
+   o:insetmode="auto">
+   <v:fill color2="windowText [77]"/>
+   <o:lock v:ext="edit" rotation="t" text="t"/>
+   <x:ClientData ObjectType="Chart">
+    <x:WebChart>
+     <x:Scaling>
+      <x:ScaleID>0</x:ScaleID>
+      <x:Orientation>MinMax</x:Orientation>
+     </x:Scaling>
+     <x:Scaling>
+      <x:ScaleID>1</x:ScaleID>
+      <x:Orientation>MinMax</x:Orientation>
+      <x:Minimum>30000</x:Minimum>
+     </x:Scaling>
+     <x:Chart>
+      <x:Name>Chart 1</x:Name>
+      <x:Options>
+       <x:SizeWithWindow/>
+      </x:Options>
+      <x:PageSetup>
+       <x:ChartSize>FullPage</x:ChartSize>
+      </x:PageSetup>
+      <x:Font>
+       <x:FontName>Arial</x:FontName>
+       <x:Size>10</x:Size>
+       <x:AutoScale/>
+      </x:Font>
+      <x:Left>0</x:Left>
+      <x:Top>0</x:Top>
+      <x:Width>9284.9853515625</x:Width>
+      <x:Height>4289.9853515625</x:Height>
+      <x:ChartGrowth>
+       <x:HorzGrowth>1</x:HorzGrowth>
+       <x:VertGrowth>1</x:VertGrowth>
+      </x:ChartGrowth>
+      <x:PlotArea>
+       <x:Border>
+        <x:ColorIndex>15</x:ColorIndex>
+        <x:LineStyle>Solid</x:LineStyle>
+        <x:Weight>Narrow</x:Weight>
+       </x:Border>
+       <x:Interior>
+        <x:ColorIndex>None</x:ColorIndex>
+       </x:Interior>
+       <x:Font>
+        <x:FontName>Arial</x:FontName>
+        <x:Size>10</x:Size>
+        <x:AutoScale/>
+       </x:Font>
+       <x:Graph>
+        <x:Type>Line</x:Type>
+        <x:SubType>Standard</x:SubType>
+        <x:ScaleID>0</x:ScaleID>
+        <x:ScaleID>1</x:ScaleID>
+        <x:Series>
+         <x:Index>0</x:Index>
+         <x:Name>Series 1</x:Name>
+         <x:Marker>
+          <x:Symbol>None</x:Symbol>
+         </x:Marker>
+         <x:Category>
+          <x:DataSource>0</x:DataSource>
+          <x:Data>Air_Traffic_Excel_passenger!$A$5:$A$101</x:Data>
+         </x:Category>
+         <x:Value>
+          <x:DataSource>0</x:DataSource>
+          <x:Data>Air_Traffic_Excel_passenger!$B$5:$B$101</x:Data>
+         </x:Value>
+        </x:Series>
+        <x:PlotVisible/>
+       </x:Graph>
+       <x:Axis>
+        <x:Placement>Bottom</x:Placement>
+        <x:AxisID>0</x:AxisID>
+        <x:ScaleID>0</x:ScaleID>
+        <x:CrossingAxis>1</x:CrossingAxis>
+        <x:Font>
+         <x:FontName>Arial</x:FontName>
+         <x:Size>10</x:Size>
+         <x:AutoScale/>
+        </x:Font>
+        <x:Number>
+         <x:SourceLinked/>
+         <x:FormatString>mmm\-yy</x:FormatString>
+        </x:Number>
+        <x:Type>Automatic</x:Type>
+       </x:Axis>
+       <x:Axis>
+        <x:Placement>Left</x:Placement>
+        <x:AxisID>1</x:AxisID>
+        <x:ScaleID>1</x:ScaleID>
+        <x:Title>
+         <x:Caption>
+          <x:DataSource>-1</x:DataSource>
+          <x:Data>&quot;<x:Font>Thousands</x:Font>&quot;</x:Data>
+         </x:Caption>
+         <x:Font>
+          <x:FontName>Arial</x:FontName>
+          <x:Size>11</x:Size>
+          <x:AutoScale/>
+         </x:Font>
+         <x:Border>
+          <x:ColorIndex>None</x:ColorIndex>
+         </x:Border>
+         <x:Interior>
+          <x:ColorIndex>None</x:ColorIndex>
+         </x:Interior>
+        </x:Title>
+        <x:CrossingAxis>0</x:CrossingAxis>
+        <x:CrossBetween>Between</x:CrossBetween>
+        <x:Font>
+         <x:FontName>Arial</x:FontName>
+         <x:Size>10</x:Size>
+         <x:AutoScale/>
+        </x:Font>
+        <x:Number>
+         <x:SourceLinked/>
+         <x:BuiltInFormat>3</x:BuiltInFormat>
+        </x:Number>
+        <x:Type>Value</x:Type>
+       </x:Axis>
+      </x:PlotArea>
+      <x:Legend>
+       <x:Delete/>
+      </x:Legend>
+     </x:Chart>
+    </x:WebChart>
+   </x:ClientData>
+  </v:shape><![endif]--><![if !vml]><span style='mso-ignore:vglayout'>
+  <table cellpadding=0 cellspacing=0>
+   <tr>
+    <td width=45 height=3></td>
+   </tr>
+   <tr>
+    <td></td>
+    <td><![endif]><![if !excel]><img width=619 height=286
+    src="Air_Traffic_Excel_passenger_files/image001.gif" v:shapes="_x0000_s1025"
+    class=shape v:dpi="96"><![endif]><![if !vml]></td>
+    <td width=40></td>
+   </tr>
+   <tr>
+    <td height=11></td>
+   </tr>
+  </table>
+  </span><![endif]><!--[if !mso & vml]><span style='width:528.0pt;height:225.0pt'></span><![endif]--></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36770" id=subh20000989>Sep-00</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="46368"
+  header="subh20000989 header89">46,368</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36800" id=subh20001088>Oct-00</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="50925"
+  header="subh20001088 header88">50,925</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36831" id=subh20001187>Nov-00</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="49631"
+  header="subh20001187 header87">49,631</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36861" id=subh20001286>Dec-00</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="47056"
+  header="subh20001286 header86">47,056</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36892" id=subh20010185>Jan-01</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="44081"
+  header="subh20010185 header85">44,081</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36923" id=subh20010284>Feb-01</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="43155"
+  header="subh20010284 header84">43,155</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36951" id=subh20010383>Mar-01</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="53022"
+  header="subh20010383 header83">53,022</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="36982" id=subh20010482>Apr-01</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="50706"
+  header="subh20010482 header82">50,706</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37012" id=subh20010581>May-01</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="51056"
+  header="subh20010581 header81">51,056</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37043" id=subh20010680>Jun-01</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="53389"
+  header="subh20010680 header80">53,389</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37073" id=subh20010779>Jul-01</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="55701"
+  header="subh20010779 header79">55,701</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37104" id=subh20010878>Aug-01</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="56279"
+  header="subh20010878 header78">56,279</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37135" id=subh20010977>Sep-01</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="30503"
+  header="subh20010977 header77">30,503</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37165" id=subh20011076>Oct-01</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="40245"
+  header="subh20011076 header76">40,245</td>
+  <td></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37196" id=subh20011175>Nov-01</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="40651"
+  header="subh20011175 header75">40,651</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37226" id=subh20011274>Dec-01</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="40865"
+  header="subh20011274 header74">40,865</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37257" id=subh20020173>Jan-02</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="38498"
+  header="subh20020173 header73">38,498</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37288" id=subh20020272>Feb-02</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="38561"
+  header="subh20020272 header72">38,561</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37316" id=subh20020371>Mar-02</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="48396"
+  header="subh20020371 header71">48,396</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37347" id=subh20020470>Apr-02</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="45355"
+  header="subh20020470 header70">45,355</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37377" id=subh20020569>May-02</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="47045"
+  header="subh20020569 header69">47,045</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37408" id=subh20020668>Jun-02</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="49093"
+  header="subh20020668 header68">49,093</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37438" id=subh20020767>Jul-02</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="51071"
+  header="subh20020767 header67">51,071</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37469" id=subh20020866>Aug-02</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="51146"
+  header="subh20020866 header66">51,146</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37500" id=subh20020965>Sep-02</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="40148"
+  header="subh20020965 header65">40,148</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37530" id=subh20021064>Oct-02</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="48059"
+  header="subh20021064 header64">48,059</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37561" id=subh20021163>Nov-02</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="44855"
+  header="subh20021163 header63">44,855</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37591" id=subh20021262>Dec-02</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="49688"
+  header="subh20021262 header62">49,688</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37622" id=subh20030161>Jan-03</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="43037"
+  header="subh20030161 header61">43,037</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37653" id=subh20030260>Feb-03</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="41173"
+  header="subh20030260 header60">41,173</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37681" id=subh20030359>Mar-03</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="49998"
+  header="subh20030359 header59">49,998</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37712" id=subh20030458>Apr-03</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="47038"
+  header="subh20030458 header58">47,038</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37742" id=subh20030557>May-03</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="49157"
+  header="subh20030557 header57">49,157</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37773" id=subh20030656>Jun-03</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="52213"
+  header="subh20030656 header56">52,213</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37803" id=subh20030755>Jul-03</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="55815"
+  header="subh20030755 header55">55,815</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37834" id=subh20030854>Aug-03</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="53926"
+  header="subh20030854 header54">53,926</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37865" id=subh20030953>Sep-03</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="44218"
+  header="subh20030953 header53">44,218</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37895" id=subh20031052>Oct-03</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="49949"
+  header="subh20031052 header52">49,949</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37926" id=subh20031151>Nov-03</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="47065"
+  header="subh20031151 header51">47,065</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37956" id=subh20031250>Dec-03</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="49762"
+  header="subh20031250 header50">49,762</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="37987" id=subh20040149>Jan-04</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="43820"
+  header="subh20040149 header49">43,820</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38018" id=subh20040248>Feb-04</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="45312"
+  header="subh20040248 header48">45,312</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38047" id=subh20040347>Mar-04</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="54153"
+  header="subh20040347 header47">54,153</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38078" id=subh20040446>Apr-04</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="53258"
+  header="subh20040446 header46">53,258</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38108" id=subh20040545>May-04</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="53036"
+  header="subh20040545 header45">53,036</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38139" id=subh20040644>Jun-04</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="56963"
+  header="subh20040644 header44">56,963</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38169" id=subh20040743>Jul-04</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="59620"
+  header="subh20040743 header43">59,620</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38200" id=subh20040842>Aug-04</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="57386"
+  header="subh20040842 header42">57,386</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38231" id=subh20040941>Sep-04</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="47676"
+  header="subh20040941 header41">47,676</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38261" id=subh20041040>Oct-04</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="54172"
+  header="subh20041040 header40">54,172</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38292" id=subh20041139>Nov-04</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="51787"
+  header="subh20041139 header39">51,787</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38322" id=subh20041238>Dec-04</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="52645"
+  header="subh20041238 header38">52,645</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38353" id=subh20050137>Jan-05</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="47983"
+  header="subh20050137 header37">47,983</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38384" id=subh20050236>Feb-05</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="47080"
+  header="subh20050236 header36">47,080</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38412" id=subh20050335>Mar-05</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="58844"
+  header="subh20050335 header35">58,844</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38443" id=subh20050434>Apr-05</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="54914"
+  header="subh20050434 header34">54,914</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38473" id=subh20050533>May-05</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="57329"
+  header="subh20050533 header33">57,329</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38504" id=subh20050632>Jun-05</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="59728"
+  header="subh20050632 header32">59,728</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38534" id=subh20050731>Jul-05</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="62402"
+  header="subh20050731 header31">62,402</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38565" id=subh20050830>Aug-05</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="59116"
+  header="subh20050830 header30">59,116</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38596" id=subh20050929>Sep-05</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="50604"
+  header="subh20050929 header29">50,604</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38626" id=subh20051028>Oct-05</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="53742"
+  header="subh20051028 header28">53,742</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38657" id=subh20051127>Nov-05</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="52772"
+  header="subh20051127 header27">52,772</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38687" id=subh20051226>Dec-05</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="52806"
+  header="subh20051226 header26">52,806</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38718" id=subh20060125>Jan-06</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="48891"
+  header="subh20060125 header25">48,891</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38749" id=subh20060224>Feb-06</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="47353"
+  header="subh20060224 header24">47,353</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38777" id=subh20060323>Mar-06</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="58291"
+  header="subh20060323 header23">58,291</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38808" id=subh20060422>Apr-06</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="55833"
+  header="subh20060422 header22">55,833</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38838" id=subh20060521>May-06</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="57150"
+  header="subh20060521 header21">57,150</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38869" id=subh20060620>Jun-06</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="59301"
+  header="subh20060620 header20">59,301</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38899" id=subh20060719>Jul-06</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="60844"
+  header="subh20060719 header19">60,844</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38930" id=subh20060818>Aug-06</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="58308"
+  header="subh20060818 header18">58,308</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38961" id=subh20060917>Sep-06</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="49953"
+  header="subh20060917 header17">49,953</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="38991" id=subh20061016>Oct-06</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="55091"
+  header="subh20061016 header16">55,091</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39022" id=subh20061115>Nov-06</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="53856"
+  header="subh20061115 header15">53,856</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39052" id=subh20061214>Dec-06</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="53543"
+  header="subh20061214 header14">53,543</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39083" id=subh20070113>Jan-07</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="50026"
+  header="subh20070113 header13">50,026</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39114" id=subh20070212>Feb-07</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="47770"
+  header="subh20070212 header12">47,770</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39142" id=subh20070311>Mar-07</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="59249"
+  header="subh20070311 header11">59,249</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39173" id=subh20070410>Apr-07</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="57399"
+  header="subh20070410 header10">57,399</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39203" id=subh2007059>May-07</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="59285"
+  header="subh2007059 header9">59,285</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39234" id=subh2007068>Jun-07</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="61482"
+  header="subh2007068 header8">61,482</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39264" id=subh2007077>Jul-07</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="63445"
+  header="subh2007077 header7">63,445</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39295" id=subh2007086>Aug-07</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="62643"
+  header="subh2007086 header6">62,643</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39326" id=subh2007095>Sep-07</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="52296"
+  header="subh2007095 header5">52,296</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39356" id=subh2007104>Oct-07</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="57199"
+  header="subh2007104 header4">57,199</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39387" id=subh2007113>Nov-07</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="55038"
+  header="subh2007113 header3">55,038</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39417" id=subh2007122>Dec-07</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="53281"
+  header="subh2007122 header2">53,281</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl28 align=right width=50 style='height:15.0pt;
+  width:38pt' x:num="39448" id=subh2008011>Jan-08</td>
+  <td class=xl29 align=right width=150 style='width:113pt' x:num="50233"
+  header="subh2008011 header1">50,233</td>
+  <td colspan=12 style='mso-ignore:colspan'></td>
+ </tr>
+ <tr height=17 style='height:12.75pt'>
+  <td height=17 colspan=14 style='height:12.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl25 colspan=4 style='height:15.0pt;mso-ignore:colspan'>SOURCE:
+  Bureau of Transportation Statistics</td>
+  <td colspan=10 style='mso-ignore:colspan'></td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=50 style='width:38pt'></td>
+  <td width=150 style='width:113pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+  <td width=64 style='width:48pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</body>
+
+</html>

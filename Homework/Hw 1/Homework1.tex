@@ -1,0 +1,882 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Homework1.R},
+            pdfauthor={Lenovo},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Homework1.R}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{Lenovo}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{Wed Apr 11 23:00:48 2018}
+
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#changed the working directory}
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"/Users/Lenovo/Desktop/Econ 144/Homework/Hw 1"}\NormalTok{)}
+\CommentTok{#source("/Users/Lenovo/Desktop/Econ 144/Homework/Hw 1/Homework1.R")}
+
+\CommentTok{#clear all variables and prior sessions}
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list=}\KeywordTok{ls}\NormalTok{(}\DataTypeTok{all=}\OtherTok{TRUE}\NormalTok{))}
+
+\KeywordTok{library}\NormalTok{(DAAG)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: lattice
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(lattice)}
+\KeywordTok{library}\NormalTok{(foreign)}
+\KeywordTok{library}\NormalTok{(MASS)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'MASS'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:DAAG':
+## 
+##     hills
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(car)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: carData
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'car'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:DAAG':
+## 
+##     vif
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(stats)}
+\KeywordTok{require}\NormalTok{(stats4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: stats4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(KernSmooth)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## KernSmooth 2.23 loaded
+## Copyright M. P. Wand 1997-2009
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(fastICA)}
+\KeywordTok{library}\NormalTok{(cluster)}
+\KeywordTok{library}\NormalTok{(leaps)}
+\KeywordTok{library}\NormalTok{(mgcv)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: nlme
+\end{verbatim}
+
+\begin{verbatim}
+## This is mgcv 1.8-23. For overview type 'help("mgcv-package")'.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(rpart)}
+\KeywordTok{library}\NormalTok{(pan)}
+\KeywordTok{library}\NormalTok{(mgcv)}
+\KeywordTok{library}\NormalTok{(e1071)}
+\KeywordTok{library}\NormalTok{(corrplot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## corrplot 0.84 loaded
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#imported the dataset from DAAG'}
+\NormalTok{data =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(nsw74psid1)}
+\KeywordTok{attach}\NormalTok{(data)}
+\KeywordTok{summary}\NormalTok{(nsw74psid1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       trt               age             educ           black       
+##  Min.   :0.00000   Min.   :17.00   Min.   : 0.00   Min.   :0.0000  
+##  1st Qu.:0.00000   1st Qu.:25.00   1st Qu.:10.00   1st Qu.:0.0000  
+##  Median :0.00000   Median :32.00   Median :12.00   Median :0.0000  
+##  Mean   :0.06916   Mean   :34.23   Mean   :11.99   Mean   :0.2916  
+##  3rd Qu.:0.00000   3rd Qu.:43.50   3rd Qu.:14.00   3rd Qu.:1.0000  
+##  Max.   :1.00000   Max.   :55.00   Max.   :17.00   Max.   :1.0000  
+##       hisp              marr            nodeg             re74       
+##  Min.   :0.00000   Min.   :0.0000   Min.   :0.0000   Min.   :     0  
+##  1st Qu.:0.00000   1st Qu.:1.0000   1st Qu.:0.0000   1st Qu.:  8817  
+##  Median :0.00000   Median :1.0000   Median :0.0000   Median : 17437  
+##  Mean   :0.03439   Mean   :0.8194   Mean   :0.3331   Mean   : 18230  
+##  3rd Qu.:0.00000   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.: 25470  
+##  Max.   :1.00000   Max.   :1.0000   Max.   :1.0000   Max.   :137149  
+##       re75             re78       
+##  Min.   :     0   Min.   :     0  
+##  1st Qu.:  7605   1st Qu.:  9243  
+##  Median : 17008   Median : 19432  
+##  Mean   : 17851   Mean   : 20502  
+##  3rd Qu.: 25584   3rd Qu.: 28816  
+##  Max.   :156653   Max.   :121174
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{##(a) Plot a histogram of each variable and discuss its properties.}
+\KeywordTok{windows}\NormalTok{()}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{truehist}\NormalTok{(trt,}\DataTypeTok{col=}\StringTok{'steelblue3'}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Whether the subject was enrolled in }\CharTok{\textbackslash{}n}\StringTok{ PSID(==0) or NSW(==1)"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"NSW or PSID"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Fraction"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{density}\NormalTok{(trt),}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{truehist}\NormalTok{(age,}\DataTypeTok{col=}\StringTok{'steelblue3'}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Age"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"age"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Fraction"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{density}\NormalTok{(age),}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{truehist}\NormalTok{(educ,}\DataTypeTok{col=}\StringTok{'steelblue3'}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Years of Education"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"years"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Fraction"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{density}\NormalTok{(educ),}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{truehist}\NormalTok{(black,}\DataTypeTok{col=}\StringTok{'steelblue3'}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Whether the subject was Black"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"black or not"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Fraction"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{density}\NormalTok{(black),}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Homework1_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{windows}\NormalTok{()}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{truehist}\NormalTok{(hisp,}\DataTypeTok{col=}\StringTok{'steelblue3'}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Whether the subject was Hispanic"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"hispanic or not"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Fraction"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{density}\NormalTok{(hisp),}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{truehist}\NormalTok{(marr,}\DataTypeTok{col=}\StringTok{'steelblue3'}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Whether the subject was married"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"married or not"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Fraction"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{density}\NormalTok{(marr),}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{truehist}\NormalTok{(nodeg,}\DataTypeTok{col=}\StringTok{'steelblue3'}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Whether the subject was a }\CharTok{\textbackslash{}n}\StringTok{ high school dropout"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"dropout or not"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Fraction"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{density}\NormalTok{(nodeg),}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{truehist}\NormalTok{(re74,}\DataTypeTok{col=}\StringTok{'steelblue3'}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Real Earnings in 1974"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"real earnings"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Fraction"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{density}\NormalTok{(re74),}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Homework1_files/figure-latex/unnamed-chunk-1-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{windows}\NormalTok{()}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{truehist}\NormalTok{(re75,}\DataTypeTok{col=}\StringTok{'steelblue3'}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Real Earnings in 1975"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"real earnings"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Fraction"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{density}\NormalTok{(re75),}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{truehist}\NormalTok{(re78,}\DataTypeTok{col=}\StringTok{'steelblue3'}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Real Earnings in 1978"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"real earnings"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Fraction"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{density}\NormalTok{(re78),}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Homework1_files/figure-latex/unnamed-chunk-1-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Most of the data variables are binary, such as whether the subject was black or not. Even when }
+\CommentTok{# the data is not binary, the pdf does not exhibit the shape of a normal distribution}
+
+\NormalTok{##(b) Estimate your full regression model and show your results (e.g., the output from the `summary' command in R).}
+\NormalTok{##    Discuss these results. }
+\NormalTok{y =}\StringTok{ }\KeywordTok{lm}\NormalTok{(re78}\OperatorTok{~}\NormalTok{trt}\OperatorTok{+}\NormalTok{age}\OperatorTok{+}\NormalTok{educ}\OperatorTok{+}\NormalTok{black)}
+\KeywordTok{summary}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = re78 ~ trt + age + educ + black)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -34507  -7311   -148   7071 106726 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -5761.73    1771.01  -3.253  0.00115 ** 
+## trt         -8398.25    1156.55  -7.261 5.00e-13 ***
+## age           195.55      27.29   7.165 1.00e-12 ***
+## educ         1759.08      97.41  18.058  < 2e-16 ***
+## black       -3247.63     668.11  -4.861 1.24e-06 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 13990 on 2670 degrees of freedom
+## Multiple R-squared:  0.2006, Adjusted R-squared:  0.1994 
+## F-statistic: 167.5 on 4 and 2670 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Since the p-values are so small, the estimated coefficients that we obtained by running the regression}
+\CommentTok{#is statistically significant. However since the R^2 is so low, the model does not fit the data}
+
+\CommentTok{# (c) Compute the Mallows CP statistic for all the plausible models and choose only one}
+\CommentTok{# model. Discuss why you chose this model. For the next questions, only use your selected}
+\CommentTok{# model from this part.}
+\KeywordTok{windows}\NormalTok{()}
+\NormalTok{ss=leaps}\OperatorTok{::}\KeywordTok{regsubsets}\NormalTok{(re78}\OperatorTok{~}\NormalTok{trt}\OperatorTok{+}\NormalTok{age}\OperatorTok{+}\NormalTok{educ}\OperatorTok{+}\NormalTok{black,}\DataTypeTok{method=}\KeywordTok{c}\NormalTok{(}\StringTok{"exhaustive"}\NormalTok{),}\DataTypeTok{nbest=}\DecValTok{4}\NormalTok{,}\DataTypeTok{data=}\NormalTok{data)}
+\KeywordTok{subsets}\NormalTok{(ss,}\DataTypeTok{statistic=}\StringTok{"cp"}\NormalTok{,}\DataTypeTok{legend=}\NormalTok{F,}\DataTypeTok{main=}\StringTok{"Mallows CP"}\NormalTok{,}\DataTypeTok{col=}\StringTok{"steelblue4"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Abbreviation
+## trt              t
+## age              a
+## educ             e
+## black            b
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{legend}\NormalTok{(}\FloatTok{2.3}\NormalTok{,}\DecValTok{650}\NormalTok{,}\DataTypeTok{bty=}\StringTok{"n"}\NormalTok{,}\DataTypeTok{legend=}\KeywordTok{c}\NormalTok{(}\StringTok{'t=trt'}\NormalTok{,}\StringTok{'a=Age'}\NormalTok{,}\StringTok{'e=Years of Education'}\NormalTok{, }\StringTok{'b=Black'}\NormalTok{),}\DataTypeTok{col=}\StringTok{"steelblue4"}\NormalTok{,}\DataTypeTok{cex=}\FloatTok{1.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Homework1_files/figure-latex/unnamed-chunk-1-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# From the Mallows Cp, we can see that the choosing all 4 variables would give the lowest Cp. }
+\CommentTok{# However, the Cp is sufficiently low enough when we just take trt, age and educ variables. }
+\CommentTok{# So I'll use these variables.}
+
+\NormalTok{y1 =}\StringTok{ }\KeywordTok{lm}\NormalTok{(re78}\OperatorTok{~}\NormalTok{trt}\OperatorTok{+}\NormalTok{age}\OperatorTok{+}\NormalTok{educ)}
+
+\CommentTok{#(d) Plot the residuals vs. the fitted values.}
+\KeywordTok{windows}\NormalTok{()}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfcol=}\KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(y1}\OperatorTok{$}\NormalTok{fit,y1}\OperatorTok{$}\NormalTok{res,}\DataTypeTok{col=}\StringTok{"skyblue3"}\NormalTok{,}\DataTypeTok{pch=}\DecValTok{20}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Predicted Response"}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"Residuals"}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Residuals vs. Predicted Response"}\NormalTok{,}\DataTypeTok{cex.axis=}\FloatTok{0.8}\NormalTok{,}\DataTypeTok{cex.main=}\FloatTok{0.9}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h=}\DecValTok{0}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{lowess}\NormalTok{(y1}\OperatorTok{$}\NormalTok{fit,y1}\OperatorTok{$}\NormalTok{res),}\DataTypeTok{lwd=}\FloatTok{1.5}\NormalTok{) }
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v=}\FloatTok{6e5}\NormalTok{,}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{,}\DataTypeTok{lty=}\DecValTok{2}\NormalTok{,}\DataTypeTok{lwd=}\FloatTok{1.5}\NormalTok{)}
+\KeywordTok{legend}\NormalTok{(}\OperatorTok{-}\DecValTok{5500}\NormalTok{,}\DecValTok{100000}\NormalTok{,}\KeywordTok{c}\NormalTok{(}\KeywordTok{expression}\NormalTok{(y[obs]}\OperatorTok{==}\NormalTok{y[pred]), }\StringTok{"Lowess Smoother"}\NormalTok{), }\DataTypeTok{fill =}\KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"black"}\NormalTok{),}\DataTypeTok{cex=}\FloatTok{0.8}\NormalTok{)}
+
+\CommentTok{#(e)Plot and discuss the VIF plot.}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{vif}\NormalTok{(y1),}\DataTypeTok{col=}\StringTok{"skyblue3"}\NormalTok{,}\DataTypeTok{xlab=}\KeywordTok{rbind}\NormalTok{(}\StringTok{"trt"}\NormalTok{, }\StringTok{"age"}\NormalTok{, }\StringTok{"educ"}\NormalTok{),}\DataTypeTok{ylab=}\StringTok{"Residuals"}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Residuals vs. Predicted Response"}\NormalTok{,}\DataTypeTok{cex.axis=}\FloatTok{0.8}\NormalTok{,}\DataTypeTok{cex.main=}\FloatTok{0.9}\NormalTok{)}
+
+\CommentTok{#(f) Plot and discuss the correlation graph (use the corrplot library).}
+\NormalTok{M <-}\StringTok{ }\KeywordTok{cor}\NormalTok{(data)}
+\KeywordTok{corrplot}\NormalTok{(M, }\DataTypeTok{method =} \StringTok{"circle"}\NormalTok{)}
+
+\CommentTok{#The plot shows that there is very little correlation between any 2 variables }
+\CommentTok{#from the data, except that between years of education and being a high school dropout,}
+\CommentTok{#and between the different years of the earning. This might imply that the other}
+\CommentTok{#variables such as age, years of education, etc does not affect earnings in the population.}
+
+\CommentTok{# (g) Plot the Cook's Distance values. Are there any outliers? If so, discuss what you would}
+\CommentTok{# do with them.}
+\NormalTok{y1_cook=}\KeywordTok{cooks.distance}\NormalTok{(y1)}
+\KeywordTok{plot}\NormalTok{(y1_cook,}\DataTypeTok{ylab=}\StringTok{"Cook's distance"}\NormalTok{,}\DataTypeTok{type=}\StringTok{'o'}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Cook's Distance Plot"}\NormalTok{,}\DataTypeTok{col=}\StringTok{"skyblue4"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{,}\DataTypeTok{lwd=}\NormalTok{.}\DecValTok{25}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(}\DecValTok{7}\NormalTok{,}\FloatTok{0.28}\NormalTok{,}\StringTok{"wt=5345lbs }\CharTok{\textbackslash{}n}\StringTok{ 8-Cyl }\CharTok{\textbackslash{}n}\StringTok{  hp=230 }\CharTok{\textbackslash{}n}\StringTok{ mpg=14.7"}\NormalTok{)}
+\KeywordTok{text}\NormalTok{(}\DecValTok{14}\NormalTok{,}\FloatTok{0.33}\NormalTok{, }\KeywordTok{expression}\NormalTok{(}\StringTok{""}\OperatorTok{%->%}\StringTok{""}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Homework1_files/figure-latex/unnamed-chunk-1-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# From the plot, we could see that there are outliers. One way to deal with it is to consider}
+\CommentTok{# modifying the model, such as to a log-linear one. Since we could see that there is only one }
+\CommentTok{# outlier that stands out too much, another way is to just remove that point.}
+
+\CommentTok{#(h) Plot a histogram of the residuals and discuss the results.}
+\KeywordTok{truehist}\NormalTok{(y1}\OperatorTok{$}\NormalTok{res,}\DataTypeTok{col=}\StringTok{"skyblue3"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Residuals"}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"Fraction"}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Histogram of Residuals"}\NormalTok{)}
+\NormalTok{xr=}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{800000}\NormalTok{,}\KeywordTok{mean}\NormalTok{(y1}\OperatorTok{$}\NormalTok{res),}\KeywordTok{sd}\NormalTok{(y1}\OperatorTok{$}\NormalTok{res))}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{density}\NormalTok{(xr),}\DataTypeTok{col=}\StringTok{"black"}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{density}\NormalTok{(y1}\OperatorTok{$}\NormalTok{res),}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\KeywordTok{legend}\NormalTok{(}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\KeywordTok{c}\NormalTok{(}\StringTok{"Density"}\NormalTok{,}\StringTok{"Normal Distr."}\NormalTok{),}\DataTypeTok{fill=}\KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{,}\StringTok{"black"}\NormalTok{),}\DataTypeTok{bty=}\StringTok{'n'}\NormalTok{)}
+
+\CommentTok{# Since pdf of residuals closely resembles that of a normal distribution, we know that the OLS is unbiased.}
+\CommentTok{# This means that we can estimate the coefficients of the variables without bias.}
+
+\CommentTok{#(i) Plot the QQ Normal Plot and discuss the results.}
+\KeywordTok{qqnorm}\NormalTok{(y1}\OperatorTok{$}\NormalTok{res,}\DataTypeTok{col=}\StringTok{"skyblue4"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{20}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{1}\NormalTok{,}\DataTypeTok{main=}\StringTok{"QQ Normal Plot"}\NormalTok{)}
+
+\CommentTok{#change this}
+\CommentTok{# Since the shape of the line is fairly straight, we can assume that linear regression works fine.}
+\CommentTok{# However we could that there are some points that jump at the right tail, which implies that we have outliers.}
+
+\CommentTok{#(j) Plot the observed vs. predicted values, overlay a Lowess smoother, and discuss the}
+\CommentTok{#results.}
+\KeywordTok{windows}\NormalTok{()}
+\KeywordTok{plot}\NormalTok{(y1}\OperatorTok{$}\NormalTok{fit,re78,}\DataTypeTok{pch=}\DecValTok{20}\NormalTok{,}\DataTypeTok{col=}\StringTok{"skyblue4"}\NormalTok{,}\DataTypeTok{cex=}\DecValTok{1}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Predicted Response"}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"Observed Response"}\NormalTok{,}\DataTypeTok{main=}\StringTok{"Observed vs. Predicted Response }\CharTok{\textbackslash{}n}\StringTok{ Full Model"}\NormalTok{,}\DataTypeTok{cex.axis=}\FloatTok{0.8}\NormalTok{,}\DataTypeTok{cex.main=}\FloatTok{1.0}\NormalTok{)}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{lowess}\NormalTok{(y1}\OperatorTok{$}\NormalTok{fit,re78),}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{,}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{,}\DataTypeTok{lty=}\DecValTok{2}\NormalTok{) }
+\KeywordTok{text}\NormalTok{(}\DecValTok{25}\NormalTok{,}\DecValTok{18}\NormalTok{,}\KeywordTok{expression}\NormalTok{(R}\OperatorTok{^}\DecValTok{2}\OperatorTok{==}\FloatTok{0.826}\NormalTok{))}
+\KeywordTok{legend}\NormalTok{(}\DecValTok{15}\NormalTok{,}\DecValTok{31}\NormalTok{, }\KeywordTok{c}\NormalTok{(}\KeywordTok{expression}\NormalTok{(y[obs]}\OperatorTok{==}\NormalTok{y[pred]), }\StringTok{"Lowess Smoother"}\NormalTok{), }\DataTypeTok{fill =}\KeywordTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"black"}\NormalTok{),}\DataTypeTok{cex=}\DecValTok{1}\NormalTok{,}\DataTypeTok{bty=}\StringTok{"y"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Homework1_files/figure-latex/unnamed-chunk-1-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# The way the plots scatter all over indicates that there is very little correspondence }
+\CommentTok{# between the observed values and the predicted values. This means that the model for prediction  }
+\CommentTok{# is poor}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#2}
+\CommentTok{#clear all variables and prior sessions}
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list=}\KeywordTok{ls}\NormalTok{(}\DataTypeTok{all=}\OtherTok{TRUE}\NormalTok{))}
+
+\CommentTok{#get the data and attach it}
+\NormalTok{data =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"2.2.csv"}\NormalTok{, }\DataTypeTok{header =}\NormalTok{ T)}
+\KeywordTok{attach}\NormalTok{(data)}
+
+\CommentTok{#obtain the descriptive statistics: mean, median, variance, standard deviation,}
+\CommentTok{#skewness, and kurtosis.}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"The mean of the GDP quarterly growth rates is "}\NormalTok{, }\KeywordTok{mean}\NormalTok{(GRGDP)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The mean of the GDP quarterly growth rates is  0.795803870967742"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"The median of the GDP quarterly growth rates is "}\NormalTok{, }\KeywordTok{median}\NormalTok{(GRGDP)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The median of the GDP quarterly growth rates is  0.76789"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"The variance of the GDP quarterly growth rates is "}\NormalTok{, }\KeywordTok{var}\NormalTok{(GRGDP)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The variance of the GDP quarterly growth rates is  0.951862567096696"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"The standard deviation of the GDP quarterly growth rates is "}\NormalTok{, (}\KeywordTok{var}\NormalTok{(GRGDP)}\OperatorTok{^}\NormalTok{(}\FloatTok{0.5}\NormalTok{))))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The standard deviation of the GDP quarterly growth rates is  0.975634443373488"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"The skewness of the GDP quarterly growth rates is "}\NormalTok{, }\KeywordTok{skewness}\NormalTok{(GRGDP)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The skewness of the GDP quarterly growth rates is  -0.187714593795853"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"The kurtosis of the GDP quarterly growth rates is "}\NormalTok{, }\KeywordTok{kurtosis}\NormalTok{(GRGDP)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The kurtosis of the GDP quarterly growth rates is  1.38288523763476"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"The mean of the S&P500 quarterly returns is "}\NormalTok{, }\KeywordTok{mean}\NormalTok{(RETURN)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The mean of the S&P500 quarterly returns is  1.96210425806452"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"The median of the S&P500 quarterly returns is "}\NormalTok{, }\KeywordTok{median}\NormalTok{(RETURN)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The median of the S&P500 quarterly returns is  2.0227015"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"The variance of the S&P500 quarterly returns is "}\NormalTok{, }\KeywordTok{var}\NormalTok{(RETURN)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The variance of the S&P500 quarterly returns is  36.9271348635885"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"The standard deviation of the S&P500 quarterly returns is "}\NormalTok{, (}\KeywordTok{var}\NormalTok{(RETURN)}\OperatorTok{^}\NormalTok{(}\FloatTok{0.5}\NormalTok{))))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The standard deviation of the S&P500 quarterly returns is  6.07677010126173"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"The skewness of the S&P500 quarterly returns is "}\NormalTok{, }\KeywordTok{skewness}\NormalTok{(RETURN)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The skewness of the S&P500 quarterly returns is  -0.679887149724607"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\KeywordTok{paste}\NormalTok{(}\StringTok{"The kurtosis of the S&P500 quarterly returns is "}\NormalTok{, }\KeywordTok{kurtosis}\NormalTok{(RETURN)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The kurtosis of the S&P500 quarterly returns is  2.22845965467761"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#histograms}
+\KeywordTok{windows}\NormalTok{()}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{truehist}\NormalTok{(GRGDP,}\DataTypeTok{col=}\StringTok{'steelblue3'}\NormalTok{,}\DataTypeTok{main=}\StringTok{"U.S. GDP quarterly growth rates"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Rates"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Fraction"}\NormalTok{,}
+         \DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{5}\NormalTok{,}\DecValTok{5}\NormalTok{),}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.7}\NormalTok{))}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{density}\NormalTok{(GRGDP),}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{truehist}\NormalTok{(RETURN,}\DataTypeTok{col=}\StringTok{'steelblue3'}\NormalTok{,}\DataTypeTok{main=}\StringTok{"S&P 500 quarterly returns"}\NormalTok{,}\DataTypeTok{xlab=}\StringTok{"Returns"}\NormalTok{, }\DataTypeTok{ylab=}\StringTok{"Fraction"}\NormalTok{,}
+         \DataTypeTok{xlim=}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{40}\NormalTok{,}\DecValTok{50}\NormalTok{),}\DataTypeTok{ylim=}\KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\FloatTok{0.09}\NormalTok{))}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{density}\NormalTok{(RETURN),}\DataTypeTok{lwd=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Homework1_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#correlation }
+\KeywordTok{print}\NormalTok{ (}\StringTok{"The correlation matrix is: "}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The correlation matrix is: "
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cor}\NormalTok{(}\KeywordTok{cbind}\NormalTok{(GRGDP, RETURN))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            GRGDP    RETURN
+## GRGDP  1.0000000 0.2702427
+## RETURN 0.2702427 1.0000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#This statistics shows that the median is higher slightly compared to the mean,}
+\CommentTok{#the data is skewed slightly to the right, which can be verified by looking at the }
+\CommentTok{#negative skewness and the shape of the histogram. }
+\CommentTok{#The correlation between US GDP growth rate and SP500 return is also very low.}
+
+\CommentTok{#3.}
+\CommentTok{#clear all variables and prior sessions and obtain the data}
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list=}\KeywordTok{ls}\NormalTok{(}\DataTypeTok{all=}\OtherTok{TRUE}\NormalTok{))}
+\NormalTok{data =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"3.1.csv"}\NormalTok{, }\DataTypeTok{header =}\NormalTok{ T)}
+\KeywordTok{attach}\NormalTok{(data)}
+
+\CommentTok{#a)}
+\NormalTok{rpce_pctchg =}\StringTok{ }\KeywordTok{diff}\NormalTok{(}\KeywordTok{log}\NormalTok{(rpce))}
+\NormalTok{rdpi_pctchg =}\StringTok{ }\KeywordTok{diff}\NormalTok{(}\KeywordTok{log}\NormalTok{(rdpi))}
+
+\KeywordTok{windows}\NormalTok{()}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(rpce_pctchg, }\DataTypeTok{main=}\StringTok{"Scatterplot of real personal consumption expenditure growth rate"}\NormalTok{, }
+     \DataTypeTok{ylab=}\StringTok{"real personal consumption expenditure growth rate"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{19}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(rdpi_pctchg, }\DataTypeTok{main=}\StringTok{"Scatterplot of real disposal personal income"}\NormalTok{,  }
+     \DataTypeTok{ylab=}\StringTok{"real disposal personal income"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Homework1_files/figure-latex/unnamed-chunk-2-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#change this}
+\CommentTok{#from the plots, we can see that growth rate of the real personal consumption expenditure}
+\CommentTok{#growth rate is more volatile than that of real disposal personal income}
+\CommentTok{#Permanent income model that the current expenditure is not determined just by their }
+\CommentTok{#current income but also by their future expected income. As such, it would mean }
+\CommentTok{#that even if a person's income stays relatively constant, his consumption might vary alot }
+\CommentTok{#depending on whether he wants to spend less in the current time and spend more later or}
+\CommentTok{#vice versa. This would mean that that the model explains the volatility difference.}
+
+\CommentTok{#b)}
+\NormalTok{y =}\StringTok{ }\KeywordTok{lm}\NormalTok{(rpce_pctchg}\OperatorTok{~}\NormalTok{rdpi_pctchg)}
+\KeywordTok{summary}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = rpce_pctchg ~ rdpi_pctchg)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0303967 -0.0029727  0.0001525  0.0030417  0.0244545 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 0.0022542  0.0002242  10.055  < 2e-16 ***
+## rdpi_pctchg 0.1745671  0.0292029   5.978 3.77e-09 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.005318 on 637 degrees of freedom
+## Multiple R-squared:  0.05312,    Adjusted R-squared:  0.05163 
+## F-statistic: 35.73 on 1 and 637 DF,  p-value: 3.768e-09
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#both values for the intercept and the coefficient of income have very low p value,}
+\CommentTok{#which means that they are statistically significant.}
+\CommentTok{#the intercept is close to 0, which means that if the person's income is 0, he would not consume. }
+\CommentTok{#The income coefficient is positive, which means that the higher the income,}
+\CommentTok{#the more the person will consume}
+
+\CommentTok{#c)}
+\NormalTok{y =}\StringTok{ }\KeywordTok{lm}\NormalTok{(rpce_pctchg}\OperatorTok{~}\NormalTok{rdpi_pctchg}\OperatorTok{+}\KeywordTok{lag}\NormalTok{(rdpi_pctchg))}
+\KeywordTok{summary}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = rpce_pctchg ~ rdpi_pctchg + lag(rdpi_pctchg))
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -0.0303967 -0.0029727  0.0001525  0.0030417  0.0244545 
+## 
+## Coefficients: (1 not defined because of singularities)
+##                   Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)      0.0022542  0.0002242  10.055  < 2e-16 ***
+## rdpi_pctchg      0.1745671  0.0292029   5.978 3.77e-09 ***
+## lag(rdpi_pctchg)        NA         NA      NA       NA    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.005318 on 637 degrees of freedom
+## Multiple R-squared:  0.05312,    Adjusted R-squared:  0.05163 
+## F-statistic: 35.73 on 1 and 637 DF,  p-value: 3.768e-09
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#4.}
+\CommentTok{#clear all variables and prior sessions and obtain the data}
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list=}\KeywordTok{ls}\NormalTok{(}\DataTypeTok{all=}\OtherTok{TRUE}\NormalTok{))}
+\NormalTok{rgdp1 =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"3.3a.csv"}\NormalTok{, }\DataTypeTok{header =}\NormalTok{ T)}
+\KeywordTok{attach}\NormalTok{(rgdp1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## The following object is masked from data (pos = 3):
+## 
+##     X
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from data (pos = 4):
+## 
+##     date
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rgdp_ts<-}\KeywordTok{ts}\NormalTok{(rgdp,}\DataTypeTok{start=}\DecValTok{1948}\NormalTok{,}\DataTypeTok{freq=}\DecValTok{4}\NormalTok{)}
+
+\NormalTok{jpusforex =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"3.3b.csv"}\NormalTok{, }\DataTypeTok{header =}\NormalTok{ T)}
+\KeywordTok{attach}\NormalTok{(jpusforex)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## The following object is masked from rgdp1:
+## 
+##     X
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from data (pos = 4):
+## 
+##     X
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{jpusforex_ts<-}\KeywordTok{ts}\NormalTok{(jpy_usd,}\DataTypeTok{start=}\DecValTok{1971}\NormalTok{,}\DataTypeTok{freq=}\DecValTok{252}\NormalTok{)}
+
+\NormalTok{tcmr =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"3.3c.csv"}\NormalTok{, }\DataTypeTok{header =}\NormalTok{ T)}
+\KeywordTok{attach}\NormalTok{(tcmr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## The following objects are masked from jpusforex:
+## 
+##     DATE, X, X.1, X.2
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from rgdp1:
+## 
+##     X
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from data (pos = 5):
+## 
+##     X
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tcmr_ts<-}\KeywordTok{ts}\NormalTok{(CMRate10Yr,}\DataTypeTok{start=}\DecValTok{1971}\NormalTok{,}\DataTypeTok{freq=}\DecValTok{252}\NormalTok{)}
+
+\NormalTok{cer =}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"3.3d.csv"}\NormalTok{, }\DataTypeTok{header =}\NormalTok{ T)}
+\KeywordTok{attach}\NormalTok{(cer)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## The following objects are masked from tcmr:
+## 
+##     DATE, X, X.1, X.2
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from jpusforex:
+## 
+##     DATE, X, X.1, X.2
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from rgdp1:
+## 
+##     X
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from data (pos = 6):
+## 
+##     X
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cer_ts<-}\KeywordTok{ts}\NormalTok{(unemrate,}\DataTypeTok{start=}\DecValTok{1948}\NormalTok{, }\DataTypeTok{freq=}\DecValTok{12}\NormalTok{)}
+
+\KeywordTok{windows}\NormalTok{()}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(rgdp_ts, }\DataTypeTok{main=}\StringTok{"Scatterplot of real GDP"}\NormalTok{,  }
+     \DataTypeTok{ylab=}\StringTok{"real GDP"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{19}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(jpusforex_ts, }\DataTypeTok{main=}\StringTok{"Scatterplot of Japan-US FOREX"}\NormalTok{,  }
+     \DataTypeTok{ylab=}\StringTok{"Jp-US Forex"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Homework1_files/figure-latex/unnamed-chunk-2-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{windows}\NormalTok{()}
+\KeywordTok{par}\NormalTok{(}\DataTypeTok{mfrow =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\KeywordTok{plot}\NormalTok{(tcmr_ts, }\DataTypeTok{main=}\StringTok{"Scatterplot of Treasure }\CharTok{\textbackslash{}n}\StringTok{ Constant Maturity Rate"}\NormalTok{,  }
+     \DataTypeTok{ylab=}\StringTok{"tcmr"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{19}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(cer_ts, }\DataTypeTok{main=}\StringTok{"Scatterplot of }\CharTok{\textbackslash{}n}\StringTok{ Civilian Unemployment Rate"}\NormalTok{,  }
+     \DataTypeTok{ylab=}\StringTok{"cur"}\NormalTok{, }\DataTypeTok{pch=}\DecValTok{19}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Homework1_files/figure-latex/unnamed-chunk-2-4.pdf}
+
+
+\end{document}
