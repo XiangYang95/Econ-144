@@ -78,6 +78,7 @@ acf_val=acf(caemp_ts)$acf
 Box.test(acf_val, type = "Ljung-Box")
 Box.test(acf_val, type = "Box-Pierce")
 
+#Sometimes low order ARMA is better that high order AR or MA
 # MA(q) Model Fitting (see page 155)
 ma1=arma(caemp_ts,order=c(0,1)) #Same as MA(1) = AR(0) + MA(1)
 summary(ma1)
@@ -191,6 +192,8 @@ plot(ar.sim)
 pacf(ar.sim)
 
 # 2. Simulate an ARMA(2,2) process. According to theory,...?? 
+#if the value for the ARMA are comparable, then it would be hard to identify because 
+#there are other dynamics that come in
 arma.sim<-arima.sim(model=list(ar=c(.9,-.2),ma=c(-.7,.1)),n=10000) 
 quartz()
 par(mfrow=c(3,1))

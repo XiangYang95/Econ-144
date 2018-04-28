@@ -98,7 +98,7 @@ legend("topleft", legend=c("Regression Fitted Values", "Time Series"),
 
 ```
 
-All 3 models seem to fit the data pretty well. However the quadratic and exponential models fit the data better than the linear one.
+All 3 models seem to fit the data pretty well based on the plots. However the quadratic and exponential models fit the data better than the linear one.
 
 c)
 ```{r}
@@ -110,7 +110,7 @@ plot(predict(y3, list(x = ds$x)), residuals(y3), main = "Exponential:Residual vs
 
 ```
 
-There seems to be a nonlinear pattern in the plot of residuals vs fitted values for the linear model, which suggest that indeed the data must be represented by a nonlinear model. There seems to be more negative residuals in the quadratic plot, which implies that the model overpredicts the fitted values, while the residuals are more or less balanced in positive and negative direction for the exponential model.
+There seems to be a nonlinear pattern in the plot of residuals vs fitted values for the all model, which suggest that not all the dynamics of the data are accounted for. There seems to be more negative residuals in the quadratic plot, which implies that the model overpredicts the fitted values, while the residuals are more or less balanced in positive and negative direction for the exponential model.
 
 d)
 ```{r}
@@ -119,16 +119,16 @@ AIC(y1,y2,y3)
 BIC(y1,y2,y3)
 ```
 
-The AIC and the BIC seems to show that the quadratic model is the better fit for the data.
+The AIC and the BIC seems to show that the quadratic model is the best fit for the data.
 
-d)
+e)
 ```{r}
 #Plotting the graph with the 95% confidence and prediction intervals
 tn=data.frame(t=seq(1992,2002))
-pred=predict(lm(female_ts ~ t), tn, se.fit = TRUE)
+pred=predict(lm(female_ts~t+I(t^2)), tn, se.fit = TRUE)
 #plot(c(male_ts,pred$fit),type='l',xlim=c(1940,2000))
-pred.plim = predict(lm(female_ts ~ t),tn, level =0.95, interval="prediction")
-pred.clim = predict(lm(female_ts ~ t), tn,level=0.95, interval="confidence")
+pred.plim = predict(lm(female_ts~t+I(t^2)),tn, level =0.95, interval="prediction")
+pred.clim = predict(lm(female_ts~t+I(t^2)), tn,level=0.95, interval="confidence")
 matplot(tn$t,cbind(pred.clim, pred.plim[,-1]),
         lty=c(1,2,2,3,3), type="l", lwd=2, ylab="predicted y",xlab="Time", col =         c("red", "black", "black", "blue","blue"))
 title(main = "Predicted value vs Time")
@@ -187,6 +187,7 @@ summary(y)
 
 The ex post interest rate is statistically insignicant since it has a high p-value corresponding to the t-value. This means that interest rates do not affect consumption significantly.
 
+How to solve for the annual frequency and the different forecasting methods?
 ##Problem 3
 Clearing previous problem's data and obtaining the data for this problem
 ```{r}
@@ -226,6 +227,32 @@ y5 = lm(house_price_ts~hp_lag1k+hp_lag2k)
 summary(y5)
 ```
 
+We can that the coefficients for the odd number of lags are positive and the even number of lags are negative, which means that there is a cycle that goes positive and negative between lags. We also see that the R^2 is large, which shows that the autoregression fits the data well.
+
+Recursive scheme
+```{r}
+init_no_of_observ = ceiling(2/3*length(house_price))
+house_price_used = house_price[1:init_no_of_observ]
+for (i in 0:ceiling(1/3*length(house_price))){
+  
+  if (i == 0){
+    house_price_used_ts = ts(house_price_used , start=1980+(1/4), freq=4)
+    forecasted_val = forecast(reg_ts, 1)
+  }else{
+    house_price_used = append(house_price_used, forecasted_val$mean)
+    house_price_used_ts = ts(house_price_used, start=1980+(1/4), freq=4)
+    forecasted_val = forecast(reg_ts, 1)
+  }
+}
+
+```
+
+Plot the recursive forecasted values and the normal time series
+```{r}
+t = seq(from = 1980+(1/4), to = 2011 + (3/4), length = length(reg_ts))
+matplot(t, cbind(reg_ts, house_price_ts))
+
+```
 
 ##Problem 4
 Clearing previous problem's data and obtaining the data for this problem
@@ -325,6 +352,15 @@ acf(y1)
 pacf(y1)
 acf(y2)
 pacf(y2)
+
+for (i in 1:20){
+  print(Box.test(y1, lag = i, type = "Ljung-Box"))
+}
+
+for (i in 1:20){
+  print(Box.test(y2, lag = i, type = "Ljung-Box"))
+}
+
 ```
 
-According to the ACF and PACF, there seems to be seasonality in the data for both AMEX and SP500. But more importantly we also see a lot more signicant autocorrelations for several different lag values. This might be because of the fact that there are a lot more data points that we are using, and thus we can see the autocorrelations more defined. 
+According to the ACF and PACF, there seems to be seasonality in the data for both AMEX and SP500. But more importantly we also see a lot more signicant autocorrelations for several different lag values. This might be because of the fact that there are a lot more data points that we are using, and thus we can see the autocorrelations more defined. Moreover, the Ljung-Box test there is time dependence for the SP500 returns but not for the AMEX.
