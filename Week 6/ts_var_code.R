@@ -1,7 +1,7 @@
 #***********************************************
 # Randall R. Rojas
 # Email: rrojas@econ.ucla.edu
-# Date: 05/10/2015
+# Date: 05/10/2015A
 # Comment(s): R code for fitting VAR models
 # Data File(s): housecomp.dat
 #***********************************************
@@ -13,7 +13,7 @@
 #************************************************
 
 # Set your 'working directory' to the folder where all the data and respective codes are located.
-#setwd("/Users/DrDrR4/Documents/Courses/2015/Spring/Econ144/R_Codes")
+setwd("/Users/Lenovo/Desktop/Econ 144/Week 6")
 
 # Clear all variables and prior sessions
 rm(list=ls(all=TRUE))
@@ -62,7 +62,7 @@ library(dlnm)
 data=read.table("housecomp.dat")
 starts<-ts(data[,2],start=1968.1,freq=12)
 comps<-ts(data[,3],start=1968.1,freq=12)
-quartz()
+windows()
 
 plot(starts)
 nberShade()
@@ -72,11 +72,11 @@ legend("topright",legend=c("Starts","Completions"),text.col=c("black","blue"),bt
 
 
 # Look at the ACF, PACF, and CCF (cros-correlation function)
-quartz()
+windows()
 tsdisplay(starts,main="Housing Starts")
-quartz()
+windows()
 tsdisplay(comps,main="Housing Completions")
-quartz()
+windows()
 ccf(starts,comps,ylab="Cross-Correlation Function", main = "Starts and Completions CCF")
 # Completions are maximally correlated with starts lagged by 6-12 months.
 
@@ -97,30 +97,30 @@ summary(y_model)
 # The ourtput from summary are cij, cov, and corr.
 
 # Plot the fit and orginal data
-quartz()
+windows()
 plot(y_model)
 #pdf("varplot.pdf", width=8, height=8) 
 #plot(y_model)
 #dev.off() 
 
 # Look at ACF and PACf
-quartz()
+windows()
 par(mfrow=c(2,1))
 acf(residuals(y_model)[,1])
 pacf(residuals(y_model)[,1])
 
-quartz()
+windows()
 par(mfrow=c(2,1))
 acf(residuals(y_model)[,2])
 pacf(residuals(y_model)[,2])
 
 # or even better
-quartz()
+windows()
 tsdisplay(residuals(y_model)[,2],main ="Comps = starts(t-k) + comps(t-k)")
 # Impulse Response Function
 irf(y_model)
 #pdf("irf.pdf", width=8, height=8) 
-quartz()
+windows()
 plot(irf(y_model, n.ahead=36))
 #dev.off() 
 
@@ -128,7 +128,7 @@ plot(irf(y_model, n.ahead=36))
 #holdout_matrix = hold out data
 #var.predict = predict(object=y_model, n.ahead=52, dumvar=holdout_matrix);
 var.predict = predict(object=y_model, n.ahead=52)
-quartz()
+windows()
 plot(var.predict)
 
 dev.print(device=postscript,"forecast.eps",width=7,height=7, horizontal=FALSE)
@@ -139,10 +139,10 @@ dev.off()
 grangertest(comps ~ starts, order = 8)
 
 #Variance Decomposition (Forecast Error Variance Decomposition)
-quartz()
+windows()
 plot(fevd(y_model, n.ahead = 5))
 
 #CUSUM Plot
-quartz()
+windows()
 plot(stability(y_model, type = "Rec-CUSUM"), plot.type="single")
 
