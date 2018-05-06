@@ -10,7 +10,7 @@
 #************************************************
 
 # Set your 'working directory' to the folder where all the data and respective codes are located.
-#setwd("/Users/DrDrR4/Documents/Courses/2015/Spring/Econ144/R_Codes")
+setwd("C:/Users/Xiang/OneDrive/Desktop/Econ-144/Week 5")
 
 # Clear all variables and prior sessions
 rm(list=ls(all=TRUE))
@@ -59,12 +59,12 @@ library(fpp)
 # Read in the data into a ts data file:
 caemp=read.table("caemp.txt")
 caemp_ts<-ts(caemp,start=1962.1,freq=4)
-quartz()
+windows()
 plot(caemp_ts,xlab='Year', ylab="Canadian Employment", lwd=2)
 grid()
 
 # Look at the correlogram
-quartz()
+windows()
 par(mfrow=c(3,1))
 acf(caemp_ts, type = "covariance", main="Autocovariance",lag.max=50, ylab="COV")
 acf(caemp_ts, type = "correlation", main="Autocorrelation",lag.max=50,ylab="ACF")
@@ -89,7 +89,7 @@ summary(ma3)
 #plot(ma3)
 
 # Look at all the MA(q) fits
-quartz()
+windows()
 plot(caemp_ts,xlab='Year', ylab="Canadian Employment", lwd=2)
 grid()
 lines(ma1$fitted.values,col="blue",lwd=2)
@@ -98,7 +98,7 @@ lines(ma3$fitted.values,col="red",lwd=2)
 legend("topright",legend=c("Data","MA(10)","MA(2)","MA(1)"),text.col=1:4,bty="n")
 
 # Examine the best fit MA(q) model
-quartz()
+windows()
 par(mfrow=c(2,2))
 plot(caemp_ts,xlab='Year', ylab="Canadian Employment", lwd=2)
 lines(ma3$fitted.values,col="red",lwd=1,lty=1)
@@ -125,7 +125,7 @@ summary(ar3)
 #plot(ar2)
 
 # Look at all the AR(p) fits
-quartz()
+windows()
 plot(caemp_ts,xlab='Year', ylab="Canadian Employment", lwd=2)
 grid()
 lines(ar1$fitted.values,col="blue",lwd=2,lty=2)
@@ -134,7 +134,7 @@ lines(ar3$fitted.values,col="red",lwd=2,lty=2)
 legend("topright",legend=c("Data","AR(3)","AR(2)","AR(1)"),text.col=1:4,bty="n")
 
 # Examine the best fit AR(p) model
-quartz()
+windows()
 par(mfrow=c(2,2))
 plot(caemp_ts,xlab='Year', ylab="Canadian Employment", lwd=2)
 lines(ar2$fitted.values,col="red",lwd=1,lty=1)
@@ -158,7 +158,7 @@ summary(arma4)
 #plot(ar2)
 
 # Look at all the ARMA(p,q) fits
-quartz()
+windows()
 plot(caemp_ts,xlab='Year', ylab="Canadian Employment", lwd=2)
 grid()
 lines(arma1$fitted.values,col="blue",lwd=2,lty=2)
@@ -167,7 +167,7 @@ lines(arma3$fitted.values,col="red",lwd=2,lty=2)
 legend("topright",legend=c("Data","ARMA(2,1)","ARMA(1,2)","ARMA(1,1)"),text.col=1:4,bty="n")
 
 # Examine the best fit AR(p) model
-quartz()
+windows()
 par(mfrow=c(2,2))
 plot(caemp_ts,xlab='Year', ylab="Canadian Employment", lwd=2)
 lines(arma3$fitted.values,col="red",lwd=1,lty=1)
@@ -179,14 +179,14 @@ acf(arma3$residuals[3:136], type = "partial",main="Partial Autocorrelation",lag.
 
 # 1. Simulate an MA(2) process. Accroding to theory, the ACF cuts-off at lag=2
 ma.sim<-arima.sim(model=list(ma=c(-.7,.1)),n=1000) #Note: 'ma' has 2 coefficients, hence MA(2)
-quartz()
+windows()
 par(mfrow=(c(2,1)))
 plot(ma.sim)
 acf(ma.sim)
 
 # 2. Simulate an AR(4) process. Accroding to theory, the PACF cuts-off at lag=4
 ar.sim<-arima.sim(model=list(ar=c(.9,-.2,-.8,0.5)),n=10000) #Note: 'ar' has 2 coefficients, hence AR(4)
-quartz()
+windows()
 par(mfrow=c(2,1))
 plot(ar.sim)
 pacf(ar.sim)
@@ -195,7 +195,7 @@ pacf(ar.sim)
 #if the value for the ARMA are comparable, then it would be hard to identify because 
 #there are other dynamics that come in
 arma.sim<-arima.sim(model=list(ar=c(.9,-.2),ma=c(-.7,.1)),n=10000) 
-quartz()
+windows()
 par(mfrow=c(3,1))
 plot(arma.sim)
 acf(arma.sim)

@@ -1,0 +1,297 @@
+---
+title: "Hw 3"
+author: "Xiang Yang Ng"
+date: "May 5, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Set the current directory, clear the environment and download the libraries
+
+```{r}
+setwd("C:/Users/Xiang/OneDrive/Desktop/Econ-144/Homework/Hw 3")
+
+rm(list=ls(all=TRUE))
+
+library("quantmod")
+library(lattice)
+library(foreign)
+library(MASS)
+library(car)
+require(stats)
+require(stats4)
+library(KernSmooth)
+library(fastICA)
+library(cluster)
+library(leaps)
+library(mgcv)
+library(rpart)
+library(pan)
+library(mgcv)
+library(DAAG)
+library("TTR")
+library(tis)
+require("datasets")
+require(graphics)
+library("forecast")
+#install.packages("astsa")
+#require(astsa)
+library(xtable)
+# New libraries added:
+library(stats)
+library(TSA)
+library(timeSeries)
+library(fUnitRoots)
+library(fBasics)
+library(tseries)
+library(timsac)
+library(TTR)
+library(fpp)
+```
+
+#Problem 1
+```{r}
+#Obtaining the simulated ma(2) model with 10000 points
+theory_ma2 = arima.sim(model = list(ma = c(-2, 1.35)), n = 10000)
+summary(theory_ma2)
+```
+
+
+a)
+```{r}
+ARMAacf(ma = c(-2, 1.35), lag.max = 10)
+Box.test(theory_ma2, lag = 10, type = c("Box-Pierce", "Ljung-Box"))
+```
+
+b)
+```{r}
+acf(theory_ma2[1:100], main = "ACF for the first 100 observations \n of the simulated MA(2)", lag.max = 10)
+```
+
+
+The theoretical ACF shows 2 spikes that are significant, which are -0.6888970 and 0.1978747, while the sample ACF shows only one spike around 0.65. This shows that the there might even if there is an MA process with order p, taking a subset of the process might not produce an MA process with the same order.
+
+#Problem 2
+Clear the previous data and obtain the data
+```{r}
+rm(list = ls(all = TRUE))
+data = read.csv("6.10.csv")
+names(data) = c("date", "ApplPrice", "return")
+attach(data)
+```
+
+First look at the plots for both the price and the returns, as well as their ACF and PACF
+```{r}
+ApplPrice_ts = ts(ApplPrice, start = 2007+(10/12), end = 2012 + (7/12), freq = 252)
+return_ts = ts(return, start = 2007+(10/12), end = 2012 + (7/12), freq = 252)
+plot(ApplPrice_ts, type = "l", main = "Plot of Apple Price", xlab = "Year", ylab = "Price")
+plot(return_ts, type = "l", main = "Plot of Apple return", xlab = "Year", ylab = "Return")
+acf(ApplPrice_ts, main = "ACF of Apple Price", type = "correlation")
+pacf(ApplPrice_ts, main = "pACF of Apple Price")
+acf(return_ts, , main = "ACF of Apple return",  type = "correlation")
+pacf(return_ts, main = "PACF of Apple return")
+```
+
+Looking at the plot of the price, there is an upward trend, while the ACF shows a slow decay and the PACF shows one spike. This means we should take the first difference of the price and then fit an AR(1) model to the data
+```{r}
+ar1 = arima(ApplPrice_ts, c(1,1,0))
+acf(ar1$residuals)
+pacf(ar1$residuals)
+ar1r = arima(return_ts, c(1,0,0))
+acf(ar1r$residuals)
+pacf(ar1r$residuals)
+
+```
+
+
+
+
+#Problem 3
+Clear the previous data and obtain the new data
+```{r}
+rm(list = ls(all=TRUE))
+data = read.csv("7.2.csv")
+names(data) = c('date', 'unemploy_thousands')
+attach(data)
+```
+To explain the difference in acf or pacf, we need to look at the plot of the data
+```{r}
+plot(unemploy_thousands_ts, main = "Plot of unemployed in thousands")
+```
+
+Create a time series object for the number of unemployed in thousands and calculate the acf and pacf in batches of 100. First pair of acf and pacf takes in all data points, second pair takes in the 1st hundred, the third pair takes in the 2nd hundred, while the last pair takes in 183th data point to the last data point.
+```{r}
+unemploy_thousands_ts = ts(unemploy_thousands, start = 1989, frequency = 12)
+
+acf(unemploy_thousands_ts, main = "ACF of number of unemployed in thousands")
+pacf(unemploy_thousands_ts, main = "PACF of number of unemployed in thousands")
+acf(unemploy_thousands_ts[1:100], main = "ACF of number of unemployed in thousands")
+pacf(unemploy_thousands_ts[1:100], main = "PACF of number of unemployed in thousands")
+acf(unemploy_thousands_ts[2:200], main = "ACF of number of unemployed in thousands")
+pacf(unemploy_thousands_ts[2:200], main = "PACF of number of unemployed in thousands")
+acf(unemploy_thousands_ts[183:283], main = "ACF of number of unemployed in thousands")
+pacf(unemploy_thousands_ts[183:283], main = "PACF of number of unemployed in thousands")
+```
+
+From the ACFs, there is a slow decay as the lag value increases and for each of the PACF, we can see there is a signifcant time dependence with lag 1 and that there seems to be a significant time dependence with other lags which is much smaller in magnitude compared to the first lag in various other lags. This means that there seems that for the time spans that I choose, there seems to be not much variation in the significance of the time dependence for for all lags.
+
+AR model is also good to fit the data since there is a few spikes in the PACF and a decay of the ACF as lag values increases.
+
+##Problem 4
+Clear all the previous environment and add in the new data
+```{r}
+rm(list = ls(all=TRUE))
+data = read.csv("7.6.csv")
+names(data)[c(3,5)] = c("housing.inflation", "transportation.inflation")
+attach(data)
+```
+
+To obtain the inflation rate, first create a time series object for all 4 and take the the diffence between the current values and its lag(can't do difference of log since there are negative values) 
+```{r}
+hcpi_ts = ts(housing.CPI, start = 1976, freq = 1)
+hinf_ts = ts(housing.inflation, start = 1976, freq = 1)
+tcpi_ts = ts(transportation.CPI, start = 1976, freq = 1)
+tinf_ts = ts(transportation.inflation, start = 1976, freq = 1)
+
+hcpi_perctchg = (lag(hcpi_ts)-hcpi_ts)/ lag(hcpi_ts)
+hinf_perctchg = (lag(hinf_ts)-hinf_ts)/ lag(hinf_ts)
+hinf_perctchg = hinf_perctchg[complete.cases(hinf_perctchg)]
+tcpi_perctchg = (lag(tcpi_ts)-tcpi_ts)/ lag(tcpi_ts)
+tinf_perctchg = (lag(tinf_ts)-tinf_ts)/ lag(tinf_ts)
+tinf_perctchg = tinf_perctchg[complete.cases(tinf_perctchg)]
+```
+
+
+To understand whether the data can be modeled as an AR(2) process, we have to look at the ACF and PACF of all the percentage change time series objects
+```{r}
+acf(hcpi_perctchg, main = "ACF of the percentage change of housing CPI")
+pacf(hcpi_perctchg,  main = "PACF of the percentage change of housing CPI")
+acf(hinf_perctchg, main = "ACF of the percentage change of housing inflation")
+pacf(hinf_perctchg,  main = "PACF of the percentage change of housing inflation")
+acf(tcpi_perctchg, main = "ACF of the percentage change of transportation CPI")
+pacf(tcpi_perctchg,  main = "PACF of the percentage change of transportation CPI")
+acf(tinf_perctchg, main = "ACF of the percentage change of transportation inflation")
+pacf(tinf_perctchg,  main = "PACF of the percentage change of transportation inflation")
+```
+
+Based on the housing CPI percentage change, which has 3 spikes in the beginning of the PACF, then it might be good to use an AR(2) model to fit the data. But it does not work for the rest of the percentage changes, since there is at most 1 spike in the PACF. 
+
+##Problem 5
+Clear all the previous environment and add in the new data
+```{r}
+rm(list = ls(all=TRUE))
+data = read.csv("7.7.csv")
+names(data)[c(3,5)] = c("food.inflation", "Gas.inflation")
+attach(data)
+```
+
+Create a time series objects out of all the variables and find the ACF and PACF for all of them
+```{r}
+fcpi_ts = ts(food.CPI, start = 1957, freq = 1)
+finf_ts = ts(food.inflation, start = 1957, freq = 1)
+finf_ts = finf_ts [complete.cases(finf_ts )]
+
+gcpi_ts = ts(Gas.CPI, start = 1957, freq = 1)
+ginf_ts = ts(Gas.inflation, start = 1957, freq = 1)
+ginf_ts = ginf_ts [complete.cases(ginf_ts)]
+
+
+acf(fcpi_ts, main = "ACF of the food CPI")
+pacf(fcpi_ts, main = "PACF of the food CPI")
+acf(finf_ts, main = "ACF of the food inflation")
+pacf(finf_ts, main = "PACF of the food inflation")
+acf(gcpi_ts, main = "ACF of the Gas CPI")
+pacf(gcpi_ts, main = "PACF of the Gas CPI")
+acf(ginf_ts, main = "ACF of the Gas inflation")
+pacf(ginf_ts, main = "PACF of the Gas inflation")
+```
+
+Looking at the PACF of all the time series objects, we find the for food CPI, we could fit an AR(1) model; for food inflation, we might fit an AR(3) model; for the gas CPI, we might fit an AR(4) model; for the gas inflation however, since the ACF and PACF resembles those of a white noise, but we just fit AR(1) model just in case. After we'll check the ACF and the PACF of the residuals to see if there are any other structure in the data that we have not taken care of.
+```{r}
+fcpi_ar1 = Arima(fcpi_ts, order = c(1,0,0), method = "ML")
+finf_ar3 = Arima(finf_ts, order = c(3,0,0), method = "ML")
+gcpi_ar4 = Arima(gcpi_ts, order = c(4,0,0), method = "ML")
+ginf_ar1 = Arima(ginf_ts, order = c(1,0,0), method = "ML")
+
+acf(fcpi_ar1$residuals[complete.cases(fcpi_ar1$residuals)])
+pacf(fcpi_ar1$residuals[complete.cases(fcpi_ar1$residuals)])
+acf(finf_ar3$residuals[complete.cases(finf_ar3$residuals)])
+pacf(finf_ar3$residuals[complete.cases(finf_ar3$residuals)])
+acf(gcpi_ar4$residuals[complete.cases(gcpi_ar4$residuals)])
+pacf(gcpi_ar4$residuals[complete.cases(gcpi_ar4$residuals)])
+acf(ginf_ar1 $residuals[complete.cases(ginf_ar1$residuals)])
+pacf(ginf_ar1 $residuals[complete.cases(ginf_ar1$residuals)])
+```
+
+Based on the ACF and PACF of all the residuals except of the food CPI AR model, we can see that the dynamics have been wiped out. Since there is a spike in the ACF, I try fitting an ARMA(1,2) to the food CPI.(Tried fitting ARMA(1,1) but it doesn't work)
+```{r}
+fcpi_arma11 = Arima(fcpi_ts, order = c(1,0,2), method = "ML")
+acf(fcpi_arma11$residuals)
+pacf(fcpi_arma11$residuals)
+```
+
+Now we  see that the dynamics has been taken care of. So now we'll conduct a 1-step, 2-step and 3-step forecasts for all the models and its corresponding forecast error and uncertainty
+```{r}
+#last element index
+ind = length(food.CPI) 
+
+#last element for the CPIs and the inflations
+lastelfCPI = food.CPI[ind]
+lastelfInf = food.inflation[ind]
+lastelgCPI = Gas.CPI[ind]
+lastelgInf = Gas.inflation[ind]
+
+fcpi_arma11.pred = forecast(fcpi_arma11,h=3)
+
+print("For food CPI ARMA(1,1),")
+for (i in 1:3){
+  print(paste("Point forecast for", toString(i), "step(s) is", toString(fcpi_arma11.pred$mean[i])))
+  print(paste("Forecast error for", toString(i), "step(s) is", toString(lastelfCPI-fcpi_arma11.pred$mean[i])))
+  
+  #Since the upper bound of 95% confidence interval = point_forecast + 1.96(forecast_variance)
+  forecast_variance = (fcpi_arma11.pred$upper[i,2] - fcpi_arma11.pred$mean[i])/1.96
+  print(paste("Forecast uncertainty for", toString(i), "step(s) is", toString(forecast_variance)))
+  cat("\n")
+}
+
+finf_ar3.pred = forecast(finf_ar3,h=3)
+print("For food inflation AR(3,0),")
+for (i in 1:3){
+  print(paste("Point forecast for", toString(i), "step(s) is", toString(finf_ar3.pred$mean[i])))
+  print(paste("Forecast error for", toString(i), "step(s) is", toString(lastelfInf -finf_ar3.pred$mean[i])))
+  
+  #Since the upper bound of 95% confidence interval = point_forecast + 1.96(forecast_variance)
+  forecast_variance = (finf_ar3.pred$upper[i,2] - finf_ar3.pred$mean[i])/1.96
+  print(paste("Forecast uncertainty for", toString(i), "step(s) is", toString(forecast_variance)))
+  cat("\n")
+}
+
+gcpi_ar4.pred = forecast(gcpi_ar4,h=3)
+print("For gas CPI AR(4,0),")
+for (i in 1:3){
+  print(paste("Point forecast for", toString(i), "step(s) is", toString(gcpi_ar4.pred$mean[i])))
+  print(paste("Forecast error for", toString(i), "step(s) is", toString(lastelgCPI -gcpi_ar4.pred$mean[i])))
+  
+  #Since the upper bound of 95% confidence interval = point_forecast + 1.96(forecast_variance)
+  forecast_variance = (gcpi_ar4.pred$upper[i,2] - gcpi_ar4.pred$mean[i])/1.96
+  print(paste("Forecast uncertainty for", toString(i), "step(s) is", toString(forecast_variance)))
+  cat("\n")
+}
+
+ginf_ar1.pred = forecast(ginf_ar1,h=3)
+print("For gas inflation AR(1,0),")
+for (i in 1:3){
+  print(paste("Point forecast for", toString(i), "step(s) is", toString(ginf_ar1.pred$mean[i])))
+  print(paste("Forecast error for", toString(i), "step(s) is", toString(lastelgInf -ginf_ar1.pred$mean[i])))
+  
+  #Since the upper bound of 95% confidence interval = point_forecast + 1.96(forecast_variance)
+  forecast_variance = (ginf_ar1.pred$upper[i,2] - ginf_ar1.pred$mean[i])/1.96
+  print(paste("Forecast uncertainty for", toString(i), "step(s) is", toString(forecast_variance)))
+  cat("\n")
+}
+```
+
+We see that gas CPI has the highest uncertainties of the forecast among all the other forecasts. This means that gas CPI is the hardest to forecast.
+
