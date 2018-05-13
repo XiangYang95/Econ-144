@@ -88,6 +88,7 @@ y=cbind(starts, comps)
 y_tot=data.frame(y)
 
 # To fit a VAR(p) model, simply call 'VAR' and set p=value
+# Use var.select
 y_model=VAR(y_tot,p=4)
 summary(y_model)
 # We interpret the coefficients in the usual way,but now have a

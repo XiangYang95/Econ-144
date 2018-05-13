@@ -42,7 +42,7 @@ library(nlstools)
 #1. Xt = Xt-1 + Zt
 x = e = rnorm(1000)
 for (t in 2:1000) x[t] = x[t-1] + e[t]
-quartz()
+windows()
 plot(x, type="l")
 acf(x)
 acf(diff(x))
@@ -50,7 +50,7 @@ acf(diff(x))
 #2. Xt =  Zt
 x = e = rnorm(1000)
 for (t in 2:1000) x[t] = e[t]
-quartz()
+windows()
 plot(x, type="l")
 acf(x)
 acf(diff(x))
@@ -58,7 +58,8 @@ acf(diff(x))
 #3. Xt = -0.3Xt-1 + Zt
 x = e = rnorm(1000)
 for (t in 2:1000) x[t] = -0.3*x[t-1] + e[t]
-quartz()
+windows()
+par(mfrow =c(1,2))
 plot(x, type="l")
 acf(x)
 acf(diff(x))
@@ -74,7 +75,7 @@ acf(x,main="ACF")
 acf(diff(x),main="ACF (First Difference)",ylab=expression(ACF(Delta)))
 
 # Plot the autocorrelation, autocovariance, and partial autocorrelation functions
-quartz()
+windows()
 par(mfrow=c(2,2))
 plot(x,type='l')
 acf(x, type = "correlation")
@@ -82,7 +83,7 @@ acf(x, type = "covariance")
 acf(x, type = "partial")
 
 # Plot the autocorrlation function of the First and Second difference
-quartz()
+windows()
 par(mfrow=c(2,1))
 acf(diff(x))
 acf(diff(diff(x)))
