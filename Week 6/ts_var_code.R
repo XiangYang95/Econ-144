@@ -13,7 +13,7 @@
 #************************************************
 
 # Set your 'working directory' to the folder where all the data and respective codes are located.
-setwd("/Users/Lenovo/Desktop/Econ 144/Week 6")
+setwd("/Users/Xiang/OneDrive/Desktop/Econ-144/Week 6")
 
 # Clear all variables and prior sessions
 rm(list=ls(all=TRUE))
@@ -122,7 +122,8 @@ tsdisplay(residuals(y_model)[,2],main ="Comps = starts(t-k) + comps(t-k)")
 irf(y_model)
 #pdf("irf.pdf", width=8, height=8) 
 windows()
-plot(irf(y_model, n.ahead=36))
+
+
 #dev.off() 
 
 #Forecast

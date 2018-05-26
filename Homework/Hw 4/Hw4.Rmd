@@ -1,0 +1,238 @@
+---
+title: "Homework 4"
+author: "Xiang Yang Ng"
+date: "May 17, 2018"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Problem 1
+
+Download all the libraries and set the directory
+```{r}help
+rm(list=ls(all=T))
+setwd("/Users/Xiang/OneDrive/Desktop/Econ-144/Homework/Hw 4")
+library(forecast)
+library(stats)
+library(timeSeries)
+library(tseries)
+```
+
+Read the dataset
+```{r}
+data = read.table ("w-gs1yr.txt",header = TRUE)
+attach(data)
+```
+
+a)
+```{r}
+#create a time series object for the data
+ir_ts = ts(rate, start = 1962+(5/365), freq = 52)
+
+#display the plot, acf and pacf
+tsdisplay(ir_ts, main = "Plot of weekly interest rate and its ACF and PACF")
+```
+
+There is very strong persistence in the plot, which might mean that there is cycles in the data. There doesn't seem to have to have a strong upward or downward trend. Looking at the PACF, we can see that there is presence of seasonality, particularly S-MA(3) model might fit the data. Two strong spikes in the PACF might also suggest an AR(2) process.
+
+b) 
+```{r}
+#Constructing the models
+arma1 = Arima(ir_ts, order = c(2,0,0), seasonal = list(order = c(0,0,3), period = 6))
+arma2 = Arima(ir_ts, order = c(3,0,0), seasonal = list(order = c(0,0,3), period = 5))
+arma3 = Arima(ir_ts, order = c(3,0,0), seasonal = list(order = c(0,0,2), period = 6))
+
+plot(arma1$x,col="red", main = "Plot of the first model and the time series", xlab = "Time", ylab = "Predicted and actual values")
+legend("topright", legend = c("Predicted", "Actual"), lty = 1, col = c("blue","red"))
+lines(fitted(arma1),col="blue")
+
+plot(arma2$x,col="red", main = "Plot of the second model and the time series", xlab = "Time", ylab = "Predicted and actual values")
+legend("topright", legend = c("Predicted", "Actual"), lty = 1, col = c("blue","red"))
+lines(fitted(arma2),col="blue")
+
+plot(arma3$x,col="red", main = "Plot of the third model and the time series", xlab = "Time", ylab = "Predicted and actual values")
+legend("topright", legend = c("Predicted", "Actual"), lty = 1, col = c("blue","red"))
+lines(fitted(arma3),col="blue")
+```
+
+All 3 models seem to fit the data pretty well. We would need to look at the ACF and the PACF of all 3 models to see which one fits best.
+
+c) Running 3 models: (1) ARMA(2,0) and S-ARMA(0,3) with frequency 6, (2) ARMA(3,0) and S-ARMA(0,3) with frequency 5, (3)ARMA(3,0) and S-ARMA(0,2) with frequency 6
+```{r}
+#Look at the ACF and the PACF of residuals from the models and run a box test
+acf(arma1$residuals, main = "ACF of residual from first model")
+pacf(arma1$residuals, main = "PACF of residual from first model")
+acf(arma2$residuals, main = "ACF of residual from second model")
+pacf(arma2$residuals, main = "PACF of residual from second model")
+acf(arma2$residuals, main = "ACF of residual from third model")
+pacf(arma2$residuals, main = "PACF of residual from third model")
+
+Box.test(arma1$residuals, lag = 20)
+Box.test(arma2$residuals, lag = 20)
+Box.test(arma3$residuals, lag = 20)
+```
+
+All three models seem to fit the data well, with the residuals practically reduced to white noise looking at the ACF and the PACF as well as the Box-Pierce test. However, since by the Box-Pierce test, the first model has the lowest p-values, we'll take that model.
+
+d)
+```{r}
+library(strucchange)
+y=recresid(arma1$residuals~1)
+plot(y, pch=16,ylab="Recursive Residuals")
+```
+
+The recursive residuals suggests that there might a structural break of my ARMA model predicting the data. This occurs at the middle of the years, maybe around the year 1982. But we need to be sure by looking at its cummulative sum.
+
+e)
+```{r}
+plot(efp(arma1$residuals~1, type = "Rec-CUSUM"))
+```
+
+The recursive sum of the recursive residuals do not suggest that there is a structural break, though there are irregularities in the middle. Nevertheless, the model is robust enough to predict the data. 
+
+d)
+```{r}
+#to obtain the best fit model according to R, we use auto.arima function
+armaR = auto.arima(ir_ts)
+summary(armaR)
+summary(arma1)
+```
+
+The auto ARIMA function from R provides us the ARIMA(1,1,2) model to fit the data. The AIC and the BIC seems to be similar for both the models. So we can't say much from these 2 measures about which one is a better model to fit the data. Thus, we want to look at the ACF and the PACF of the residuals as well as conduct a Box-Pierce test to look at time dependence.
+```{r}
+acf(armaR$residuals, main = "ACF of Auto ARIMA of interest rate")
+pacf(armaR$residuals, main = "PACF of Auto ARIMA of interest rate")
+Box.test(armaR$residuals, lag = 20)
+```
+
+The ACF and PACF seems to have been reduced to that of a white noise, which means that the ARIMA(1,1,2) took care of all the dynamics in the data as well. The Box-Pierce seems to also conclude that result. However, from the ACF and PACF of my model seems to suggest an even less spikes in the plots, as well as an even lower P-value for the Box-Pierce. This sugggests that my model seems to be doing better than what 'R' suggested but the models seem to be comparable in fitting the data.
+
+g)
+```{r}
+#obtain a forecast object from each ARIMA model and then show its point forecast
+arma1.forecast = forecast(arma1, h= 24)
+arma1.forecast$mean
+
+armaR.forecast = forecast(armaR, h= 24)
+armaR.forecast$mean
+```
+
+We see that there seems to be a difference in the prediction. We take a difference between these 2 forecasted values to look at how different they are.
+
+```{r}
+forecast.diff = arma1.forecast$mean - armaR.forecast$mean
+forecast.diff
+```
+
+At every period, my model forecasted higher values. Not only that, there also seems to be upward trend that my model is predicting, while the model given by 'R' seems to be fluctuating around 0.6.
+
+##Problem 2
+Clear the previous environment and obtain the new data
+```{r}
+require(openxlsx)
+rm(list = ls(all=T))
+data = read.xlsx("Chapter8_Exercises_Data.xlsx", sheet = "Exercise 7")
+names(data)[4:5] = c("SP500_returns", "FTSE_returns")
+attach(data)
+```
+
+In order to see if FTSE returns can influence SP500 returns, we want to see if FTSE returns granger causes SP500 returns. But first we would need to clean the data since there are many NA's in between. In order to solve that problem, I would discard the data points for both returns if only one of the datapoints is NA
+```{r}
+index = vector()
+for (i in 1:length(SP500_returns)){
+  if (is.na(SP500_returns[i]) || is.na(FTSE_returns[i]))
+    index = append(index, i)
+}
+
+data = data[-index,]
+attach(data)
+```
+
+After removing all the empty data points, we first find the order for the VAR model.
+```{r}
+require("vars")
+require("VAR.etp")
+SP500_ts = ts(SP500_returns, start = 1990, freq = 252)
+FTSE_ts = ts(FTSE_returns, start = 1990, freq = 252)
+y = cbind(SP500_ts, FTSE_ts)
+y_tot=data.frame(y)
+y_cri=VAR.select(y_tot, pmax = 10)
+print(y_cri$p)
+```
+
+From VAR.select function, we find that the optimal order is 8. So we select the order to be 8 and check Granger causality. But just in case, we check for Granger causality of FTSE returns on SP500 returns
+```{r}
+for (i in 1:8){
+print(grangertest(FTSE_returns ~ SP500_returns, order = i))
+print(grangertest(SP500_returns~FTSE_returns , order = i))
+}
+```
+
+From the Granger causality test, we could see for sure that SP500 returns does influence FTSE returns, while FTSE returns affect SP500 returns as the number of lags is more than 4. Maybe because as time goes by, the eventual shock on the FTSE market would eventually linger to the SP500. Thus, we can use SP500 returns to forecase FTSE returns, and also the other way around for lags more than 4.
+
+##Problem 3
+Clear the previous environment and add in the new data
+```{r}
+rm(list = ls(all=T))
+data = read.xlsx("Chapter11_exercises_data.xlsx")
+data = data[,-8]
+attach(data)
+```
+
+Construct 4 VAR models, which are of GSF and GSJ(VAR_1), GSF and GAL(VAR_2), GSj and GAL(VAR_3), and GSF, GSJ and GAL together(VAR_4).(All these 3 symbols are quarterly house price growth rate based on  original Freddie Mac House Price Indices of San Francisco-Oakland-Freemont, San Jose-Sunnyvale-Santa Clara, Albany-Schenectady-Oakland-Freemont respectively)
+```{r}
+GSF_ts = ts(GSF[complete.cases(GSF)], start = 1957, freq = 4)
+GSJ_ts = ts(GSJ[complete.cases(GSJ)], start = 1957, freq = 4)
+GAL_ts = ts(GAL[complete.cases(GAL)], start = 1957, freq = 4)
+
+y1 = cbind(GSF_ts, GSJ_ts)
+y2 = cbind(GSF_ts, GAL_ts)
+y3 = cbind(GSJ_ts, GAL_ts)
+y4 = cbind(GSF_ts, GSJ_ts, GAL_ts)
+
+y_tot1=data.frame(y1)
+y_cri1=VAR.select(y_tot1, pmax = 20)
+y_tot2=data.frame(y2)
+y_cri2=VAR.select(y_tot2, pmax = 10)
+y_tot3=data.frame(y3)
+y_cri3=VAR.select(y_tot3, pmax = 10)
+y_tot4=data.frame(y4)
+y_cri4=VAR.select(y_tot4, pmax = 10)
+
+print(y_cri1$p)
+print(y_cri2$p)
+print(y_cri3$p)
+print(y_cri4$p)
+```
+
+This shows that the order to use for VAR_1, VAR_2, VAR_3 and VAR_4 are 3, 7, 7 and 3 respectively.
+```{r}
+VAR_1 = VAR(y_tot1, p = 3)
+VAR_2 = VAR(y_tot2, p = 7)
+VAR_3 = VAR(y_tot3, p = 7)
+VAR_4 = VAR(y_tot4, p = 3)
+
+VAR_1.predict = predict(object=VAR_1, n.ahead=1)
+VAR_2.predict = predict(object=VAR_2, n.ahead=1)
+VAR_3.predict = predict(object=VAR_3, n.ahead=1)
+VAR_4.predict = predict(object=VAR_4, n.ahead=1)
+
+print(VAR_1.predict$fcst)
+```
+```{r}
+print(VAR_2.predict$fcst)
+```
+```{r}
+print(VAR_3.predict$fcst)
+```
+```{r}
+print(VAR_4.predict$fcst)
+```
+
+We see that with or without adding the GAL, the forecasted values of GSF and GSJ are similar. That implies that since Albany-Schenectady-Oakland-Freemont is so far from the other 2, there is no significant effect on the forecast. 
+

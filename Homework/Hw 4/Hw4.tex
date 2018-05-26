@@ -1,0 +1,1002 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Homework 4},
+            pdfauthor={Xiang Yang Ng},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Homework 4}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{Xiang Yang Ng}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{May 17, 2018}
+
+
+\begin{document}
+\maketitle
+
+\subsection{Problem 1}\label{problem-1}
+
+Download all the libraries and set the directory
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list=}\KeywordTok{ls}\NormalTok{(}\DataTypeTok{all=}\NormalTok{T))}
+\KeywordTok{setwd}\NormalTok{(}\StringTok{"/Users/Xiang/OneDrive/Desktop/Econ-144/Homework/Hw 4"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(forecast)}
+\KeywordTok{library}\NormalTok{(stats)}
+\KeywordTok{library}\NormalTok{(timeSeries)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: timeDate
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tseries)}
+\end{Highlighting}
+\end{Shaded}
+
+Read the dataset
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data =}\StringTok{ }\KeywordTok{read.table}\NormalTok{ (}\StringTok{"w-gs1yr.txt"}\NormalTok{,}\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{)}
+\KeywordTok{attach}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\item
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#create a time series object for the data}
+\NormalTok{ir_ts =}\StringTok{ }\KeywordTok{ts}\NormalTok{(rate, }\DataTypeTok{start =} \DecValTok{1962}\OperatorTok{+}\NormalTok{(}\DecValTok{5}\OperatorTok{/}\DecValTok{365}\NormalTok{), }\DataTypeTok{freq =} \DecValTok{52}\NormalTok{)}
+
+\CommentTok{#display the plot, acf and pacf}
+\KeywordTok{tsdisplay}\NormalTok{(ir_ts, }\DataTypeTok{main =} \StringTok{"Plot of weekly interest rate and its ACF and PACF"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Hw4_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+There is very strong persistence in the plot, which might mean that
+there is cycles in the data. There doesn't seem to have to have a strong
+upward or downward trend. Looking at the PACF, we can see that there is
+presence of seasonality, particularly S-MA(3) model might fit the data.
+Two strong spikes in the PACF might also suggest an AR(2) process.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\item
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Constructing the models}
+\NormalTok{arma1 =}\StringTok{ }\KeywordTok{Arima}\NormalTok{(ir_ts, }\DataTypeTok{order =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }\DataTypeTok{seasonal =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{order =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{3}\NormalTok{), }\DataTypeTok{period =} \DecValTok{6}\NormalTok{))}
+\NormalTok{arma2 =}\StringTok{ }\KeywordTok{Arima}\NormalTok{(ir_ts, }\DataTypeTok{order =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }\DataTypeTok{seasonal =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{order =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{3}\NormalTok{), }\DataTypeTok{period =} \DecValTok{5}\NormalTok{))}
+\NormalTok{arma3 =}\StringTok{ }\KeywordTok{Arima}\NormalTok{(ir_ts, }\DataTypeTok{order =} \KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{), }\DataTypeTok{seasonal =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{order =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{), }\DataTypeTok{period =} \DecValTok{6}\NormalTok{))}
+
+\KeywordTok{plot}\NormalTok{(arma1}\OperatorTok{$}\NormalTok{x,}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Plot of the first model and the time series"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Time"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Predicted and actual values"}\NormalTok{)}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Predicted"}\NormalTok{, }\StringTok{"Actual"}\NormalTok{), }\DataTypeTok{lty =} \DecValTok{1}\NormalTok{, }\DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{,}\StringTok{"red"}\NormalTok{))}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{fitted}\NormalTok{(arma1),}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Hw4_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(arma2}\OperatorTok{$}\NormalTok{x,}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Plot of the second model and the time series"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Time"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Predicted and actual values"}\NormalTok{)}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Predicted"}\NormalTok{, }\StringTok{"Actual"}\NormalTok{), }\DataTypeTok{lty =} \DecValTok{1}\NormalTok{, }\DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{,}\StringTok{"red"}\NormalTok{))}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{fitted}\NormalTok{(arma2),}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Hw4_files/figure-latex/unnamed-chunk-4-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(arma3}\OperatorTok{$}\NormalTok{x,}\DataTypeTok{col=}\StringTok{"red"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Plot of the third model and the time series"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Time"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Predicted and actual values"}\NormalTok{)}
+\KeywordTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\StringTok{"Predicted"}\NormalTok{, }\StringTok{"Actual"}\NormalTok{), }\DataTypeTok{lty =} \DecValTok{1}\NormalTok{, }\DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{,}\StringTok{"red"}\NormalTok{))}
+\KeywordTok{lines}\NormalTok{(}\KeywordTok{fitted}\NormalTok{(arma3),}\DataTypeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Hw4_files/figure-latex/unnamed-chunk-4-3.pdf}
+
+All 3 models seem to fit the data pretty well. We would need to look at
+the ACF and the PACF of all 3 models to see which one fits best.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Running 3 models: (1) ARMA(2,0) and S-ARMA(0,3) with frequency 6, (2)
+  ARMA(3,0) and S-ARMA(0,3) with frequency 5, (3)ARMA(3,0) and
+  S-ARMA(0,2) with frequency 6
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#Look at the ACF and the PACF of residuals from the models and run a box test}
+\KeywordTok{acf}\NormalTok{(arma1}\OperatorTok{$}\NormalTok{residuals, }\DataTypeTok{main =} \StringTok{"ACF of residual from first model"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Hw4_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pacf}\NormalTok{(arma1}\OperatorTok{$}\NormalTok{residuals, }\DataTypeTok{main =} \StringTok{"PACF of residual from first model"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Hw4_files/figure-latex/unnamed-chunk-5-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{acf}\NormalTok{(arma2}\OperatorTok{$}\NormalTok{residuals, }\DataTypeTok{main =} \StringTok{"ACF of residual from second model"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Hw4_files/figure-latex/unnamed-chunk-5-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pacf}\NormalTok{(arma2}\OperatorTok{$}\NormalTok{residuals, }\DataTypeTok{main =} \StringTok{"PACF of residual from second model"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Hw4_files/figure-latex/unnamed-chunk-5-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{acf}\NormalTok{(arma2}\OperatorTok{$}\NormalTok{residuals, }\DataTypeTok{main =} \StringTok{"ACF of residual from third model"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Hw4_files/figure-latex/unnamed-chunk-5-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pacf}\NormalTok{(arma2}\OperatorTok{$}\NormalTok{residuals, }\DataTypeTok{main =} \StringTok{"PACF of residual from third model"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Hw4_files/figure-latex/unnamed-chunk-5-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Box.test}\NormalTok{(arma1}\OperatorTok{$}\NormalTok{residuals, }\DataTypeTok{lag =} \DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Box-Pierce test
+## 
+## data:  arma1$residuals
+## X-squared = 53.484, df = 20, p-value = 6.897e-05
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Box.test}\NormalTok{(arma2}\OperatorTok{$}\NormalTok{residuals, }\DataTypeTok{lag =} \DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Box-Pierce test
+## 
+## data:  arma2$residuals
+## X-squared = 46.645, df = 20, p-value = 0.000657
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Box.test}\NormalTok{(arma3}\OperatorTok{$}\NormalTok{residuals, }\DataTypeTok{lag =} \DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Box-Pierce test
+## 
+## data:  arma3$residuals
+## X-squared = 49.224, df = 20, p-value = 0.0002857
+\end{verbatim}
+
+All three models seem to fit the data well, with the residuals
+practically reduced to white noise looking at the ACF and the PACF as
+well as the Box-Pierce test. However, since by the Box-Pierce test, the
+first model has the lowest p-values, we'll take that model.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\item
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(strucchange)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: zoo
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'zoo'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:timeSeries':
+## 
+##     time<-
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     as.Date, as.Date.numeric
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: sandwich
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y=}\KeywordTok{recresid}\NormalTok{(arma1}\OperatorTok{$}\NormalTok{residuals}\OperatorTok{~}\DecValTok{1}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(y, }\DataTypeTok{pch=}\DecValTok{16}\NormalTok{,}\DataTypeTok{ylab=}\StringTok{"Recursive Residuals"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Hw4_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+The recursive residuals suggests that there might a structural break of
+my ARMA model predicting the data. This occurs at the middle of the
+years, maybe around the year 1982. But we need to be sure by looking at
+its cummulative sum.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{4}
+\item
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{efp}\NormalTok{(arma1}\OperatorTok{$}\NormalTok{residuals}\OperatorTok{~}\DecValTok{1}\NormalTok{, }\DataTypeTok{type =} \StringTok{"Rec-CUSUM"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Hw4_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+The recursive sum of the recursive residuals do not suggest that there
+is a structural break, though there are irregularities in the middle.
+Nevertheless, the model is robust enough to predict the data.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\item
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#to obtain the best fit model according to R, we use auto.arima function}
+\NormalTok{armaR =}\StringTok{ }\KeywordTok{auto.arima}\NormalTok{(ir_ts)}
+\KeywordTok{summary}\NormalTok{(armaR)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Series: ir_ts 
+## ARIMA(1,1,2) 
+## 
+## Coefficients:
+##          ar1      ma1      ma2
+##       0.6284  -0.3065  -0.0527
+## s.e.  0.0642   0.0675   0.0299
+## 
+## sigma^2 estimated as 0.03143:  log likelihood=768.32
+## AIC=-1528.65   AICc=-1528.63   BIC=-1505.41
+## 
+## Training set error measures:
+##                         ME      RMSE       MAE         MPE     MAPE
+## Training set -0.0006210918 0.1771539 0.1046884 -0.05084758 1.820023
+##                    MASE          ACF1
+## Training set 0.07539674 -0.0002601686
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(arma1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Series: ir_ts 
+## ARIMA(2,0,0)(0,0,3)[6] with non-zero mean 
+## 
+## Coefficients:
+##          ar1      ar2    sma1    sma2     sma3    mean
+##       1.3448  -0.3472  0.0190  0.0201  -0.0485  6.0860
+## s.e.  0.0189   0.0189  0.0204  0.0190   0.0194  1.3876
+## 
+## sigma^2 estimated as 0.03148:  log likelihood=765.3
+## AIC=-1516.6   AICc=-1516.55   BIC=-1475.92
+## 
+## Training set error measures:
+##                         ME      RMSE       MAE        MPE     MAPE
+## Training set -0.0007431643 0.1772215 0.1049781 -0.1596363 1.833548
+##                    MASE       ACF1
+## Training set 0.07560533 -0.0202107
+\end{verbatim}
+
+The auto ARIMA function from R provides us the ARIMA(1,1,2) model to fit
+the data. The AIC and the BIC seems to be similar for both the models.
+So we can't say much from these 2 measures about which one is a better
+model to fit the data. Thus, we want to look at the ACF and the PACF of
+the residuals as well as conduct a Box-Pierce test to look at time
+dependence.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{acf}\NormalTok{(armaR}\OperatorTok{$}\NormalTok{residuals, }\DataTypeTok{main =} \StringTok{"ACF of Auto ARIMA of interest rate"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Hw4_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pacf}\NormalTok{(armaR}\OperatorTok{$}\NormalTok{residuals, }\DataTypeTok{main =} \StringTok{"PACF of Auto ARIMA of interest rate"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Hw4_files/figure-latex/unnamed-chunk-9-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Box.test}\NormalTok{(armaR}\OperatorTok{$}\NormalTok{residuals, }\DataTypeTok{lag =} \DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Box-Pierce test
+## 
+## data:  armaR$residuals
+## X-squared = 49.591, df = 20, p-value = 0.0002534
+\end{verbatim}
+
+The ACF and PACF seems to have been reduced to that of a white noise,
+which means that the ARIMA(1,1,2) took care of all the dynamics in the
+data as well. The Box-Pierce seems to also conclude that result.
+However, from the ACF and PACF of my model seems to suggest an even less
+spikes in the plots, as well as an even lower P-value for the
+Box-Pierce. This sugggests that my model seems to be doing better than
+what `R' suggested but the models seem to be comparable in fitting the
+data.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{6}
+\item
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#obtain a forecast object from each ARIMA model and then show its point forecast}
+\NormalTok{arma1.forecast =}\StringTok{ }\KeywordTok{forecast}\NormalTok{(arma1, }\DataTypeTok{h=} \DecValTok{24}\NormalTok{)}
+\NormalTok{arma1.forecast}\OperatorTok{$}\NormalTok{mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Time Series:
+## Start = 2009.45600632244 
+## End = 2009.89831401475 
+## Frequency = 52 
+##  [1] 0.6231658 0.6460586 0.6672275 0.6877722 0.7051344 0.7280438 0.7477210
+##  [8] 0.7642885 0.7813322 0.7979600 0.8157029 0.8306220 0.8530309 0.8727072
+## [15] 0.8959690 0.9188072 0.9393944 0.9589638 0.9780169 0.9968452 1.0155504
+## [22] 1.0341681 1.0527110 1.0711835
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{armaR.forecast =}\StringTok{ }\KeywordTok{forecast}\NormalTok{(armaR, }\DataTypeTok{h=} \DecValTok{24}\NormalTok{)}
+\NormalTok{armaR.forecast}\OperatorTok{$}\NormalTok{mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Time Series:
+## Start = 2009.45600632244 
+## End = 2009.89831401475 
+## Frequency = 52 
+##  [1] 0.6038364 0.6048191 0.6054366 0.6058246 0.6060685 0.6062217 0.6063180
+##  [8] 0.6063785 0.6064165 0.6064404 0.6064555 0.6064649 0.6064708 0.6064746
+## [15] 0.6064769 0.6064784 0.6064793 0.6064799 0.6064802 0.6064805 0.6064806
+## [22] 0.6064807 0.6064808 0.6064808
+\end{verbatim}
+
+We see that there seems to be a difference in the prediction. We take a
+difference between these 2 forecasted values to look at how different
+they are.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{forecast.diff =}\StringTok{ }\NormalTok{arma1.forecast}\OperatorTok{$}\NormalTok{mean }\OperatorTok{-}\StringTok{ }\NormalTok{armaR.forecast}\OperatorTok{$}\NormalTok{mean}
+\NormalTok{forecast.diff}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Time Series:
+## Start = 2009.45600632244 
+## End = 2009.89831401475 
+## Frequency = 52 
+##  [1] 0.01932942 0.04123949 0.06179092 0.08194758 0.09906596 0.12182211
+##  [7] 0.14140294 0.15790998 0.17491566 0.19151959 0.20924748 0.22415715
+## [13] 0.24656012 0.26623264 0.28949206 0.31232879 0.33291507 0.35248395
+## [19] 0.37153667 0.39036471 0.40906976 0.42768741 0.44623022 0.46470271
+\end{verbatim}
+
+At every period, my model forecasted higher values. Not only that, there
+also seems to be upward trend that my model is predicting, while the
+model given by `R' seems to be fluctuating around 0.6.
+
+\subsection{Problem 2}\label{problem-2}
+
+Clear the previous environment and obtain the new data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(openxlsx)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: openxlsx
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list =} \KeywordTok{ls}\NormalTok{(}\DataTypeTok{all=}\NormalTok{T))}
+\NormalTok{data =}\StringTok{ }\KeywordTok{read.xlsx}\NormalTok{(}\StringTok{"Chapter8_Exercises_Data.xlsx"}\NormalTok{, }\DataTypeTok{sheet =} \StringTok{"Exercise 7"}\NormalTok{)}
+\KeywordTok{names}\NormalTok{(data)[}\DecValTok{4}\OperatorTok{:}\DecValTok{5}\NormalTok{] =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"SP500_returns"}\NormalTok{, }\StringTok{"FTSE_returns"}\NormalTok{)}
+\KeywordTok{attach}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+In order to see if FTSE returns can influence SP500 returns, we want to
+see if FTSE returns granger causes SP500 returns. But first we would
+need to clean the data since there are many NA's in between. In order to
+solve that problem, I would discard the data points for both returns if
+only one of the datapoints is NA
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{index =}\StringTok{ }\KeywordTok{vector}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(SP500_returns))\{}
+  \ControlFlowTok{if}\NormalTok{ (}\KeywordTok{is.na}\NormalTok{(SP500_returns[i]) }\OperatorTok{||}\StringTok{ }\KeywordTok{is.na}\NormalTok{(FTSE_returns[i]))}
+\NormalTok{    index =}\StringTok{ }\KeywordTok{append}\NormalTok{(index, i)}
+\NormalTok{\}}
+
+\NormalTok{data =}\StringTok{ }\NormalTok{data[}\OperatorTok{-}\NormalTok{index,]}
+\KeywordTok{attach}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## The following objects are masked from data (pos = 3):
+## 
+##     FTSE_OPEN, FTSE_returns, OBS, SP500_OPEN, SP500_returns
+\end{verbatim}
+
+After removing all the empty data points, we first find the order for
+the VAR model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(}\StringTok{"vars"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: vars
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: MASS
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: urca
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: lmtest
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(}\StringTok{"VAR.etp"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: VAR.etp
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{SP500_ts =}\StringTok{ }\KeywordTok{ts}\NormalTok{(SP500_returns, }\DataTypeTok{start =} \DecValTok{1990}\NormalTok{, }\DataTypeTok{freq =} \DecValTok{252}\NormalTok{)}
+\NormalTok{FTSE_ts =}\StringTok{ }\KeywordTok{ts}\NormalTok{(FTSE_returns, }\DataTypeTok{start =} \DecValTok{1990}\NormalTok{, }\DataTypeTok{freq =} \DecValTok{252}\NormalTok{)}
+\NormalTok{y =}\StringTok{ }\KeywordTok{cbind}\NormalTok{(SP500_ts, FTSE_ts)}
+\NormalTok{y_tot=}\KeywordTok{data.frame}\NormalTok{(y)}
+\NormalTok{y_cri=}\KeywordTok{VAR.select}\NormalTok{(y_tot, }\DataTypeTok{pmax =} \DecValTok{10}\NormalTok{)}
+\KeywordTok{print}\NormalTok{(y_cri}\OperatorTok{$}\NormalTok{p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+From VAR.select function, we find that the optimal order is 8. So we
+select the order to be 8 and check Granger causality. But just in case,
+we check for Granger causality of FTSE returns on SP500 returns
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{8}\NormalTok{)\{}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{grangertest}\NormalTok{(FTSE_returns }\OperatorTok{~}\StringTok{ }\NormalTok{SP500_returns, }\DataTypeTok{order =}\NormalTok{ i))}
+\KeywordTok{print}\NormalTok{(}\KeywordTok{grangertest}\NormalTok{(SP500_returns}\OperatorTok{~}\NormalTok{FTSE_returns , }\DataTypeTok{order =}\NormalTok{ i))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Granger causality test
+## 
+## Model 1: FTSE_returns ~ Lags(FTSE_returns, 1:1) + Lags(SP500_returns, 1:1)
+## Model 2: FTSE_returns ~ Lags(FTSE_returns, 1:1)
+##   Res.Df Df      F    Pr(>F)    
+## 1   5348                        
+## 2   5349 -1 516.64 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Granger causality test
+## 
+## Model 1: SP500_returns ~ Lags(SP500_returns, 1:1) + Lags(FTSE_returns, 1:1)
+## Model 2: SP500_returns ~ Lags(SP500_returns, 1:1)
+##   Res.Df Df      F Pr(>F)
+## 1   5348                 
+## 2   5349 -1 1.0704 0.3009
+## Granger causality test
+## 
+## Model 1: FTSE_returns ~ Lags(FTSE_returns, 1:2) + Lags(SP500_returns, 1:2)
+## Model 2: FTSE_returns ~ Lags(FTSE_returns, 1:2)
+##   Res.Df Df      F    Pr(>F)    
+## 1   5345                        
+## 2   5347 -2 265.68 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Granger causality test
+## 
+## Model 1: SP500_returns ~ Lags(SP500_returns, 1:2) + Lags(FTSE_returns, 1:2)
+## Model 2: SP500_returns ~ Lags(SP500_returns, 1:2)
+##   Res.Df Df     F  Pr(>F)  
+## 1   5345                   
+## 2   5347 -2 2.539 0.07904 .
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Granger causality test
+## 
+## Model 1: FTSE_returns ~ Lags(FTSE_returns, 1:3) + Lags(SP500_returns, 1:3)
+## Model 2: FTSE_returns ~ Lags(FTSE_returns, 1:3)
+##   Res.Df Df      F    Pr(>F)    
+## 1   5342                        
+## 2   5345 -3 179.81 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Granger causality test
+## 
+## Model 1: SP500_returns ~ Lags(SP500_returns, 1:3) + Lags(FTSE_returns, 1:3)
+## Model 2: SP500_returns ~ Lags(SP500_returns, 1:3)
+##   Res.Df Df      F Pr(>F)
+## 1   5342                 
+## 2   5345 -3 1.6741 0.1703
+## Granger causality test
+## 
+## Model 1: FTSE_returns ~ Lags(FTSE_returns, 1:4) + Lags(SP500_returns, 1:4)
+## Model 2: FTSE_returns ~ Lags(FTSE_returns, 1:4)
+##   Res.Df Df      F    Pr(>F)    
+## 1   5339                        
+## 2   5343 -4 133.74 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Granger causality test
+## 
+## Model 1: SP500_returns ~ Lags(SP500_returns, 1:4) + Lags(FTSE_returns, 1:4)
+## Model 2: SP500_returns ~ Lags(SP500_returns, 1:4)
+##   Res.Df Df      F Pr(>F)
+## 1   5339                 
+## 2   5343 -4 1.4657 0.2098
+## Granger causality test
+## 
+## Model 1: FTSE_returns ~ Lags(FTSE_returns, 1:5) + Lags(SP500_returns, 1:5)
+## Model 2: FTSE_returns ~ Lags(FTSE_returns, 1:5)
+##   Res.Df Df      F    Pr(>F)    
+## 1   5336                        
+## 2   5341 -5 106.71 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Granger causality test
+## 
+## Model 1: SP500_returns ~ Lags(SP500_returns, 1:5) + Lags(FTSE_returns, 1:5)
+## Model 2: SP500_returns ~ Lags(SP500_returns, 1:5)
+##   Res.Df Df      F   Pr(>F)   
+## 1   5336                      
+## 2   5341 -5 3.3913 0.004626 **
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Granger causality test
+## 
+## Model 1: FTSE_returns ~ Lags(FTSE_returns, 1:6) + Lags(SP500_returns, 1:6)
+## Model 2: FTSE_returns ~ Lags(FTSE_returns, 1:6)
+##   Res.Df Df      F    Pr(>F)    
+## 1   5333                        
+## 2   5339 -6 88.104 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Granger causality test
+## 
+## Model 1: SP500_returns ~ Lags(SP500_returns, 1:6) + Lags(FTSE_returns, 1:6)
+## Model 2: SP500_returns ~ Lags(SP500_returns, 1:6)
+##   Res.Df Df      F   Pr(>F)   
+## 1   5333                      
+## 2   5339 -6 3.0756 0.005245 **
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Granger causality test
+## 
+## Model 1: FTSE_returns ~ Lags(FTSE_returns, 1:7) + Lags(SP500_returns, 1:7)
+## Model 2: FTSE_returns ~ Lags(FTSE_returns, 1:7)
+##   Res.Df Df      F    Pr(>F)    
+## 1   5330                        
+## 2   5337 -7 75.635 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Granger causality test
+## 
+## Model 1: SP500_returns ~ Lags(SP500_returns, 1:7) + Lags(FTSE_returns, 1:7)
+## Model 2: SP500_returns ~ Lags(SP500_returns, 1:7)
+##   Res.Df Df      F    Pr(>F)    
+## 1   5330                        
+## 2   5337 -7 4.5631 4.309e-05 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Granger causality test
+## 
+## Model 1: FTSE_returns ~ Lags(FTSE_returns, 1:8) + Lags(SP500_returns, 1:8)
+## Model 2: FTSE_returns ~ Lags(FTSE_returns, 1:8)
+##   Res.Df Df      F    Pr(>F)    
+## 1   5327                        
+## 2   5335 -8 65.965 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Granger causality test
+## 
+## Model 1: SP500_returns ~ Lags(SP500_returns, 1:8) + Lags(FTSE_returns, 1:8)
+## Model 2: SP500_returns ~ Lags(SP500_returns, 1:8)
+##   Res.Df Df      F    Pr(>F)    
+## 1   5327                        
+## 2   5335 -8 3.5615 0.0003987 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+From the Granger causality test, we could see for sure that SP500
+returns does influence FTSE returns, while FTSE returns affect SP500
+returns as the number of lags is more than 4. Maybe because as time goes
+by, the eventual shock on the FTSE market would eventually linger to the
+SP500. Thus, we can use SP500 returns to forecase FTSE returns, and also
+the other way around for lags more than 4.
+
+\subsection{Problem 3}\label{problem-3}
+
+Clear the previous environment and add in the new data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rm}\NormalTok{(}\DataTypeTok{list =} \KeywordTok{ls}\NormalTok{(}\DataTypeTok{all=}\NormalTok{T))}
+\NormalTok{data =}\StringTok{ }\KeywordTok{read.xlsx}\NormalTok{(}\StringTok{"Chapter11_exercises_data.xlsx"}\NormalTok{)}
+\NormalTok{data =}\StringTok{ }\NormalTok{data[,}\OperatorTok{-}\DecValTok{8}\NormalTok{]}
+\KeywordTok{attach}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+Construct 4 VAR models, which are of GSF and GSJ(VAR\_1), GSF and
+GAL(VAR\_2), GSj and GAL(VAR\_3), and GSF, GSJ and GAL
+together(VAR\_4).(All these 3 symbols are quarterly house price growth
+rate based on original Freddie Mac House Price Indices of San
+Francisco-Oakland-Freemont, San Jose-Sunnyvale-Santa Clara,
+Albany-Schenectady-Oakland-Freemont respectively)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GSF_ts =}\StringTok{ }\KeywordTok{ts}\NormalTok{(GSF[}\KeywordTok{complete.cases}\NormalTok{(GSF)], }\DataTypeTok{start =} \DecValTok{1957}\NormalTok{, }\DataTypeTok{freq =} \DecValTok{4}\NormalTok{)}
+\NormalTok{GSJ_ts =}\StringTok{ }\KeywordTok{ts}\NormalTok{(GSJ[}\KeywordTok{complete.cases}\NormalTok{(GSJ)], }\DataTypeTok{start =} \DecValTok{1957}\NormalTok{, }\DataTypeTok{freq =} \DecValTok{4}\NormalTok{)}
+\NormalTok{GAL_ts =}\StringTok{ }\KeywordTok{ts}\NormalTok{(GAL[}\KeywordTok{complete.cases}\NormalTok{(GAL)], }\DataTypeTok{start =} \DecValTok{1957}\NormalTok{, }\DataTypeTok{freq =} \DecValTok{4}\NormalTok{)}
+
+\NormalTok{y1 =}\StringTok{ }\KeywordTok{cbind}\NormalTok{(GSF_ts, GSJ_ts)}
+\NormalTok{y2 =}\StringTok{ }\KeywordTok{cbind}\NormalTok{(GSF_ts, GAL_ts)}
+\NormalTok{y3 =}\StringTok{ }\KeywordTok{cbind}\NormalTok{(GSJ_ts, GAL_ts)}
+\NormalTok{y4 =}\StringTok{ }\KeywordTok{cbind}\NormalTok{(GSF_ts, GSJ_ts, GAL_ts)}
+
+\NormalTok{y_tot1=}\KeywordTok{data.frame}\NormalTok{(y1)}
+\NormalTok{y_cri1=}\KeywordTok{VAR.select}\NormalTok{(y_tot1, }\DataTypeTok{pmax =} \DecValTok{20}\NormalTok{)}
+\NormalTok{y_tot2=}\KeywordTok{data.frame}\NormalTok{(y2)}
+\NormalTok{y_cri2=}\KeywordTok{VAR.select}\NormalTok{(y_tot2, }\DataTypeTok{pmax =} \DecValTok{10}\NormalTok{)}
+\NormalTok{y_tot3=}\KeywordTok{data.frame}\NormalTok{(y3)}
+\NormalTok{y_cri3=}\KeywordTok{VAR.select}\NormalTok{(y_tot3, }\DataTypeTok{pmax =} \DecValTok{10}\NormalTok{)}
+\NormalTok{y_tot4=}\KeywordTok{data.frame}\NormalTok{(y4)}
+\NormalTok{y_cri4=}\KeywordTok{VAR.select}\NormalTok{(y_tot4, }\DataTypeTok{pmax =} \DecValTok{10}\NormalTok{)}
+
+\KeywordTok{print}\NormalTok{(y_cri1}\OperatorTok{$}\NormalTok{p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(y_cri2}\OperatorTok{$}\NormalTok{p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(y_cri3}\OperatorTok{$}\NormalTok{p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(y_cri4}\OperatorTok{$}\NormalTok{p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+This shows that the order to use for VAR\_1, VAR\_2, VAR\_3 and VAR\_4
+are 3, 7, 7 and 3 respectively.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{VAR_}\DecValTok{1}\NormalTok{ =}\StringTok{ }\KeywordTok{VAR}\NormalTok{(y_tot1, }\DataTypeTok{p =} \DecValTok{3}\NormalTok{)}
+\NormalTok{VAR_}\DecValTok{2}\NormalTok{ =}\StringTok{ }\KeywordTok{VAR}\NormalTok{(y_tot2, }\DataTypeTok{p =} \DecValTok{7}\NormalTok{)}
+\NormalTok{VAR_}\DecValTok{3}\NormalTok{ =}\StringTok{ }\KeywordTok{VAR}\NormalTok{(y_tot3, }\DataTypeTok{p =} \DecValTok{7}\NormalTok{)}
+\NormalTok{VAR_}\DecValTok{4}\NormalTok{ =}\StringTok{ }\KeywordTok{VAR}\NormalTok{(y_tot4, }\DataTypeTok{p =} \DecValTok{3}\NormalTok{)}
+
+\NormalTok{VAR_}\FloatTok{1.}\NormalTok{predict =}\StringTok{ }\KeywordTok{predict}\NormalTok{(}\DataTypeTok{object=}\NormalTok{VAR_}\DecValTok{1}\NormalTok{, }\DataTypeTok{n.ahead=}\DecValTok{1}\NormalTok{)}
+\NormalTok{VAR_}\FloatTok{2.}\NormalTok{predict =}\StringTok{ }\KeywordTok{predict}\NormalTok{(}\DataTypeTok{object=}\NormalTok{VAR_}\DecValTok{2}\NormalTok{, }\DataTypeTok{n.ahead=}\DecValTok{1}\NormalTok{)}
+\NormalTok{VAR_}\FloatTok{3.}\NormalTok{predict =}\StringTok{ }\KeywordTok{predict}\NormalTok{(}\DataTypeTok{object=}\NormalTok{VAR_}\DecValTok{3}\NormalTok{, }\DataTypeTok{n.ahead=}\DecValTok{1}\NormalTok{)}
+\NormalTok{VAR_}\FloatTok{4.}\NormalTok{predict =}\StringTok{ }\KeywordTok{predict}\NormalTok{(}\DataTypeTok{object=}\NormalTok{VAR_}\DecValTok{4}\NormalTok{, }\DataTypeTok{n.ahead=}\DecValTok{1}\NormalTok{)}
+
+\KeywordTok{print}\NormalTok{(VAR_}\FloatTok{1.}\NormalTok{predict}\OperatorTok{$}\NormalTok{fcst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $GSF_ts
+##                  fcst     lower    upper       CI
+## GSF_ts.fcst -2.102955 -6.075083 1.869172 3.972127
+## 
+## $GSJ_ts
+##                  fcst     lower    upper      CI
+## GSJ_ts.fcst -2.105309 -5.317858 1.107241 3.21255
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(VAR_}\FloatTok{2.}\NormalTok{predict}\OperatorTok{$}\NormalTok{fcst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $GSF_ts
+##                  fcst    lower    upper       CI
+## GSF_ts.fcst -0.989752 -4.98998 3.010476 4.000228
+## 
+## $GAL_ts
+##                   fcst     lower    upper       CI
+## GAL_ts.fcst -0.7083885 -4.544204 3.127426 3.835815
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(VAR_}\FloatTok{3.}\NormalTok{predict}\OperatorTok{$}\NormalTok{fcst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $GSJ_ts
+##                   fcst     lower    upper       CI
+## GSJ_ts.fcst -0.3327676 -3.481943 2.816408 3.149175
+## 
+## $GAL_ts
+##                   fcst     lower    upper      CI
+## GAL_ts.fcst -0.2545135 -4.175454 3.666427 3.92094
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(VAR_}\FloatTok{4.}\NormalTok{predict}\OperatorTok{$}\NormalTok{fcst)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $GSF_ts
+##                  fcst     lower    upper       CI
+## GSF_ts.fcst -2.126521 -6.058267 1.805225 3.931746
+## 
+## $GSJ_ts
+##                  fcst     lower    upper       CI
+## GSJ_ts.fcst -2.066979 -5.244068 1.110111 3.177089
+## 
+## $GAL_ts
+##                  fcst     lower    upper       CI
+## GAL_ts.fcst -1.074373 -5.133941 2.985194 4.059568
+\end{verbatim}
+
+We see that with or without adding the GAL, the forecasted values of GSF
+and GSJ are similar. That implies that since
+Albany-Schenectady-Oakland-Freemont is so far from the other 2, there is
+no significant effect on the forecast.
+
+
+\end{document}
