@@ -10,7 +10,7 @@
 #************************************************
 
 # Set your 'working directory' to the folder where all the data and respective codes are located.
-setwd("/Users/Lenovo/Desktop/Econ 144/Week 3")
+setwd("/Users/Xiang/OneDrive/Desktop/Econ-144/Week 3")
 # For reference, go to:
 #http://www.statoek.wiso.uni-goettingen.de/veranstaltungen/zeitreihen/sommer03/ts_r_intro.pdf
 

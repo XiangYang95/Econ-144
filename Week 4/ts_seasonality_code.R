@@ -11,7 +11,7 @@
 #************************************************
 
 # Set your 'working directory' to the folder where all the data and respective codes are located.
-setwd("/Users/Lenovo/Desktop/Econ 144/Week 4")
+setwd("/Users/Xiang/OneDrive/Desktop/Econ-144/Week 4")
 
 # Clear all variables and prior sessions
 rm(list=ls(all=TRUE))

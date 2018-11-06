@@ -14,7 +14,7 @@
 #************************************************
 
 # Set your 'working directory' to the folder where all the data and respective codes are located.
-#setwd("/Users/DrDrR4/Documents/Courses/2015/Spring/Econ144/R_Codes")
+setwd("/Users/Xiang/OneDrive/Desktop/Econ-144/Week 7")
 
 # Clear all variables and prior sessions
 rm(list=ls(all=TRUE))
@@ -63,8 +63,9 @@ library(hts)
 library(MAPA)
 set.seed(1)
 
+library(openxlsx)
+data = read.csv("hpi.csv", header = F)
 
-data = read.xls(("hpi.xls"),header = FALSE)
 LA_ts = ts(data$V1,start=1975,freq=12)
 RI_ts = ts(data$V2,start=1975,freq=12)
 

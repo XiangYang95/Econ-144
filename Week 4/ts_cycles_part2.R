@@ -59,7 +59,7 @@ acf(diff(x))
 x = e = rnorm(1000)
 for (t in 2:1000) x[t] = -0.3*x[t-1] + e[t]
 windows()
-par(mfrow =c(1,2))
+par(mfrow =c(3,1))
 plot(x, type="l")
 acf(x)
 acf(diff(x))
@@ -69,6 +69,7 @@ acf(diff(x))
 #4. Xt = sin(pi t/3) + Zt
 x = e = rnorm(1000)
 for (t in 2:1000) x[t] = sin(pi*t/3)+ e[t] -x[t-1]
+windows()
 par(mfrow=c(3,1))
 plot(x,type='l',main="Original Time Series of the Data")
 acf(x,main="ACF")

@@ -56,7 +56,7 @@ data=read.table("liquor.dat")
 data_ts<-ts(data[,1],start=1968.1,freq=12)
 t<-seq(1968, 1996.1,length=length(data_ts))
 lgdata=log(data_ts)
-quartz()
+windows()
 par(mfrow=c(2,1))
 plot(data_ts,xlab='Time', ylab="Sales", lwd=2)
 plot(lgdata,xlab='Time', ylab="Log (Sales)", lwd=2)
@@ -65,34 +65,34 @@ plot(lgdata,xlab='Time', ylab="Log (Sales)", lwd=2)
 # Fit a quadrtaic trend model
 t2<-t^2
 m1=lm(lgdata~t+t2)
-quartz()
+windows()
 par(mfrow=c(2,1))
 plot(lgdata,ylab="Log (Sales)", xlab="Time", lwd=2, col='skyblue3', xlim=c(1968,1995))
 lines(t,m1$fit,col="red3",lwd=2)
 plot(t,m1$res, ylab="Residuals",type='l',xlab="Time")
 
 # Look at the ACF and PACF
-quartz()
+windows()
 par(mfrow=c(2,1))
 acf(m1$res,lag=36,main="Residual Sample Autocorrelations",xlab="Displacement")
 pacf(m1$res,lag=36,main="Residual Sample Partial Autocorrelations", xlab="Displacement")
 
 # Fit a quadrtaic trend + seasonality model (no y-intercept)
 m2=tslm(lgdata~0+t+t2+season)
-quartz()
+windows()
 par(mfrow=c(2,1))
 plot(lgdata,ylab="Log (Sales)", xlab="Time", lwd=2, col='skyblue3')
 lines(t,m2$fit,col="red3",lwd=2,lty=2)
 plot(t,m2$res, ylab="Residuals",type='l',xlab="Time",lwd=2)
 
 # Look at the ACF and PACF
-quartz()
+windows()
 par(mfrow=c(2,1))
 acf(m2$res,lag=36,main="Residual Sample Autocorrelations",xlab="Displacement")
 pacf(m2$res,lag=36,main="Residual Sample Partial Autocorrelations", xlab="Displacement")
 
 # Summary of all four plots
-quartz()
+windows()
 par(mfrow=c(2,2))
 plot(lgdata,ylab="Log (Sales)", xlab="Time", lwd=2, col='skyblue3',main="log(data) + fit (trend +seasonality)")
 lines(t,m2$fit,col="red3",lwd=1,lty=2,main="Residuals")
@@ -104,12 +104,12 @@ pacf(m2$res,lag=36, main="Residual Sample PACF", xlab="Displacement")
 
 ### Important: To check for Seasonality, we need to look at 
 ### the ACF and PACF but at higher lags (multiples of 12 for monthly obs, mult of 4 for quarterly, etc).
-quartz()
+windows()
 par(mfrow=c(2,1))
 acf(diff(lgdata,12),lag=360,main="Residual Sample Autocorrelations",xlab="Displacement")
 pacf(diff(lgdata,12),lag=360,main="Residual Sample Partial Autocorrelations", xlab="Displacement")
 
-quartz()
+windows()
 plot(lgdata,ylab="Log (Sales)", xlab="Time", lwd=2, col='gray')
 # Model: Quadratic Trend + Cycles
 m4=arima(lgdata,order=c(3,0,0),xreg = cbind(t, t2))
@@ -124,7 +124,7 @@ lines(fitted(m4),col="green")
 m5=arima(lgdata,order=c(3,0,0),xreg = cbind(t, t2),seasonal=list(order=c(1,0,1)))
 lines(fitted(m4),col="black")
 
-quartz()
+windows()
 par(mfrow=c(2,1))
 acf(m5$res,lag=360,main="Residual Sample Autocorrelations",xlab="Displacement")
 pacf(m5$res,lag=360,main="Residual Sample Partial Autocorrelations", xlab="Displacement")
@@ -133,7 +133,7 @@ pacf(m5$res,lag=360,main="Residual Sample Partial Autocorrelations", xlab="Displ
 #I is the number of difference to the data
 # Even better if we include 'I' in ARMA
 m4=Arima(lgdata,order=c(3,1,0),xreg = cbind(t, t2),seasonal=list(order=c(1,0,1)))
-quartz()
+windows()
 par(mfrow=c(2,1))
 acf(m4$res,lag=360,main="Residual Sample Autocorrelations",xlab="Displacement")
 pacf(m4$res,lag=360,main="Residual Sample Partial Autocorrelations", xlab="Displacement")
@@ -143,12 +143,12 @@ pacf(m4$res,lag=360,main="Residual Sample Partial Autocorrelations", xlab="Displ
 
 # 1. Forecast using your model:
 m4=Arima(lgdata,order=c(3,1,0),include.drift=TRUE,seasonal=list(order=c(1,0,1)))
-quartz()
+windows()
 plot(forecast(m4,h=36),shadecols="oldstyle")
 
 # 2. Let R figure it all out for you -lazy approach but very effective ;-) 
 fit=auto.arima(lgdata)
-quartz()
+windows()
 plot(forecast(fit,h=36),shadecols="oldstyle")
 
 #Recursive Residuals:

@@ -1,0 +1,139 @@
+---
+title: "Project 2"
+output: html_notebook
+---
+Change the directory
+```{r}
+
+setwd("/Users/Xiang/OneDrive/Desktop/Econ-144/Project/Project 2")
+```
+
+clear the previous data and obtaining the data, and thus obtaining only the closing price
+```{r}
+library(readr)
+rm(list = ls(all=T))
+data = read.csv('MSFTHistoricalQuotes.csv')
+data1 = read.csv("AAPLHistoricalQuotes.csv")
+attach(data)
+```
+
+a)
+```{r}
+library(forecast)
+msft_ts = ts(close, start = 2008+(149/365), freq = 252)
+tsdisplay(msft_ts, main = "Plot of Microsoft's closing price and its ACF and PACF")
+```
+
+b), c), e), h) We decided to do parts b, c, e and h together since we wanted to confirm if our models fit the data by checking the ACF and the PACF of the residuals. For the diagnostics, we also ran a QQplot
+```{r}
+library(tseries)
+library(stats)
+#Since the data exhibits an upward sloping behavior, we can fit a quadratic model
+t<-seq(2008+(149/365), 2018+(149/365),length=length(msft_ts))
+model1 = tslm(msft_ts~t+I(t^2)) 
+#Running the ACF and PACF to see if there are other dynamics that we have not taken care of
+acf(model1$residuals, main = "Quadratic model's residuals' ACF")
+pacf(model1$residuals, main = "Quadratic model's residuals PACF")
+
+#we want to look at the residuals the quadratic model to see if we could still get rid of the dynamics. We tested using ARIMA model
+#By first looking at the auto.arima function, we use ARIMA(3,1,3)
+model2 = Arima(model1$residuals, order = c(3,0,3))
+summary(model2)
+tsdiag(model2)
+#Alternatively, we could do an exponential smoothing model on the data
+model3 = ets(msft_ts)
+summary(model3)
+
+#Since the AIC is smaller using the quadratic+ARIMA model, we'll use that instead
+#Running the ACF and the PACF of the final residuals
+acf(model2$resid, type = "correlation", main = "ARIMA(3,0,3)'s ACF")
+pacf(model2$resid, main = "ARIMA(3,0,3)'s ACF")
+Box.test(model2$resid[complete.cases(model2$resid)], lag = 100)
+
+plot(msft_ts,model2$residuals, xlab = "Fitted Values", ylab = "Residuals", main = "Plot of Residuals vs fitted values")
+qqnorm(as.numeric(model2$residuals), main = "QQPlot for the model 2's residual's values")
+qqline(model2$residuals, col = 2)
+```
+
+We fitted a quadratic model for the trend and ARIMA(3,1,3) to take care of the cycles. We did not solve for seasonality since it's not exhibted prominently in the data. From the ACF and PACF of the residuals, we see that most of the dynamics are wiped out. Looking at the Box-Pierce test, it gives us the confidence that at least the first 100 lags do not exhibit time dependence between the lags. But using the 'tsdiag' function, we see that there is time dependence at higher order lags. From the plot of the residuals vs the fitted values, we see that the data are quite evenly spread out around the 0 horizontal line, which means that most of residuals could be random. But there seeems to be some outliers that we have not taken into account. The QQplot shows only the middle values are best to use to use as forecast.
+
+f)
+```{r}
+library(strucchange)
+library(vars)
+y=recresid(model2$res~1)
+plot(y, pch=16,ylab="Recursive Residuals")
+plot(efp(model2$res~1, type = "Rec-CUSUM"), plot.type="single")
+```
+
+From the plot of the recursive residuals, we see that the values are more or less dispersed about 0, except towards the end of the time period. This might mean that forecasting using the last few values may not be valuable, but looking at the cummulative sum of the recursive residuals, we can be rest assured that there seems to be no structural breaks.
+
+i) Forecasting using our model
+```{r}
+forecasted_val = forecast(model2, h = 12)
+plot(forecasted_val, main = "Forecast based on my model", xlab = 'Time', ylab = 'Forecasted values', shadecols = "oldstyle", xlim = c(2018.4,2018.6))
+```
+
+The forecast shows a downward trend in the short term.
+
+#Var model
+i)
+```{r}
+library(vars)
+library(VAR.etp)
+aapl_ts = ts(data1$close, start = 2008+(149/365), freq = 252)
+y=cbind(msft_ts, aapl_ts)
+y_tot=data.frame(y)
+
+# To fit a VAR(p) model, simply call 'VAR' and set p=value
+for (i in 1:10){
+  y_model=VAR(y_tot,p=i)
+  print(paste("AIC and BIC for order",as.numeric(i)))
+  print(AIC(y_model))
+  print(BIC(y_model))
+}
+
+y_model = VAR(y_tot, p=2)
+summary(y_model)
+```
+
+From the AIC and BIC of different lags, we determined that the appropriate lag value is 2
+
+```{r}
+tsdisplay(residuals(y_model)[,1],main ="Plot of Microsoft's residuals and its ACF and PACF")
+tsdisplay(residuals(y_model)[,2],main ="Plot of Apple's residuals and its ACF and PACF")
+```
+
+Looking at the residuals plot, we can see that it resembles a white noise, which means that all the dynamics in the data are already taken care off. The ACF and the PACF seems to support our conclusion.
+
+```{r}
+plot(irf(y_model))
+```
+
+The impulse response function shows that Microsoft price affects Apple's price but not the other way round.
+
+k)
+```{r}
+grangertest(msft_ts ~ aapl_ts, order = 2)
+grangertest(aapl_ts~ msft_ts, order = 2)
+```
+
+Indeed, from the Granger-Causality test, we see that Microsoft price do influence Apple price but not the other way round.
+
+l) We will use this VAR model to forecast 12 steps ahead.
+```{r}
+library(ggplot2)
+var_predict <- predict(y_model, n.ahead = 12)
+plot(var_predict, xlim = c(2515,2540))
+```
+
+It looks like there is a constant trend for both forecasts. The constant trend forecast resulting from the VAR model is similar to the constant trend forecast resulting from the ARIMA model for Apple. However the constant trend forecast resulting from the VAR model is different from the downward trend forecast resulting from the ARIMA model for Microsoft. 
+
+#Conclusions
+For the Apple price, both VAR model and the trend+ARIMA model seems to produce very similar forecast, which means that both models are fairly similar in terms of predictive power. However, for the Microsft price, the quadratic+ARIMA model forecasts a slightly downward trend, while the VAR model forecasts a slightly upward trend. It might mean that one of the models is predicting incorrectly.
+
+For the future, we could work on using the equal accuracy hypothesis to figure out which model is better fitting the data.
+
+#Reference
+"Microsoft Corporation (MSFT) Interactive Chart." NASDAQ.com, Nasdaq, www.nasdaq.com/symbol/msft/interactive-chart.
+"Apple Inc. (AAPL) Interactive Chart." NASDAQ.com, Nasdaq, www.nasdaq.com/symbol/aapl/interactive-chart.

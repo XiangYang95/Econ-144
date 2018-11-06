@@ -10,7 +10,7 @@
 #************************************************
 
 # Set your 'working directory' to the folder where all the data and respective codes are located.
-setwd("C:/Users/Xiang/OneDrive/Desktop/Econ-144/Week 5")
+setwd("/Users/Xiang/OneDrive/Desktop/Econ-144/Week 5")
 
 # Clear all variables and prior sessions
 rm(list=ls(all=TRUE))
@@ -166,7 +166,7 @@ lines(arma2$fitted.values,col="seagreen2",lwd=2,lty=2)
 lines(arma3$fitted.values,col="red",lwd=2,lty=2)
 legend("topright",legend=c("Data","ARMA(2,1)","ARMA(1,2)","ARMA(1,1)"),text.col=1:4,bty="n")
 
-# Examine the best fit AR(p) model
+# Examine the best fit ARMA(p,q) model
 windows()
 par(mfrow=c(2,2))
 plot(caemp_ts,xlab='Year', ylab="Canadian Employment", lwd=2)

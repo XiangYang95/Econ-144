@@ -13,7 +13,7 @@
 # sprtn  = Monthly simple returns for the S&P 500
 #***********************************************
 # Set your 'working directory' to the folder where all the data and respective codes are located.
-#setwd("/Users/DrDrR4/Documents/Courses/2015/Spring/Econ144/R_Codes")
+setwd("/Users/Xiang/OneDrive/Desktop/Econ-144/Week 4")
 
 # Clear all variables and prior sessions
 rm(list=ls(all=TRUE))
@@ -50,9 +50,9 @@ y3 = ts(rnorm(360,0,1)+ 2*(1:360)/12, frequency=12)
 y4 = ts(runif(360,0,1), frequency=12)
 
 # Autocovariance, ACF, and PACF Functions 
-quartz()
+windows()
 plot(stl(y2,s.window="periodic"))
-quartz()
+windows()
 par(mfrow=c(3,1))
 acf(y2, type = "covariance")
 acf(y2, type = "correlation", lag.max=12)
@@ -71,9 +71,9 @@ z[1,]
 sibm=z[,2]
 sibm_ts=ts(z[,2],frequency=12,start=c(1926,1))
 libm_ts=log(sibm_ts+1) 
-quartz()
+windows()
 plot(stl(sibm_ts,s.window="periodic"))
-quartz()
+windows()
 par(mfrow=c(3,1))
 acf(sibm_ts, type = "covariance",lag.max=100,ylim=c(-0.0015,0.0015))
 acf(sibm_ts, type = "correlation", lag.max=100,ylim=c(-0.15,0.15))
@@ -85,9 +85,9 @@ Box.test(sibm_ts, lag=10, type = "Ljung-Box")
 # Conclusion: From the ACF we can see very small(~0) serial corrleations of monthly
 # IBM stock returns from Jan 1926 -Dec 2008. The ACFs are within the 
 # 2 Std. Error limits --> Not statisticaly different from 0 at the 5% level. 
-quartz()
+windows()
 plot(stl(libm_ts,s.window="periodic"))
-quartz()
+windows()
 par(mfrow=c(3,1))
 acf(libm_ts, type = "covariance",lag.max=100,ylim=c(-0.0015,0.0015))
 acf(libm_ts, type = "correlation", lag.max=100,ylim=c(-0.15,0.15))
@@ -95,9 +95,9 @@ acf(libm_ts, type = "partial",lag.max=100,ylim=c(-0.15,0.15))
 
 #Monthly Value-Weighted Index (S&P 500) Returns from 1926-2008
 vwrtn_ts=ts(z[,3],frequency=12,start=c(1926,1))
-quartz()
+windows()
 plot(stl(sibm_ts,s.window="periodic"))
-quartz()
+windows()
 par(mfrow=c(3,1))
 acf(vwrtn_ts, type = "covariance",lag.max=100,ylim=c(-0.0015,0.0015))
 acf(vwrtn_ts, type = "correlation", lag.max=100,ylim=c(-0.15,0.15))
